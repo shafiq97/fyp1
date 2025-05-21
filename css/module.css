@@ -1,0 +1,56 @@
+@import url("dashboard.css");
+
+/* Ensure module page has proper spacing for fixed footer */
+.module-page {
+    min-height: calc(100vh - 14rem);
+    padding-bottom: 6rem;
+    margin-top: 2rem;
+}
+
+.module-page .box-container{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+    gap:1.5rem;
+    justify-content: center;
+    align-items: flex-start;
+ }
+ 
+ .module-page .box-container .box{
+    border-radius: .5rem;
+    background-color: var(--white-color);
+    padding: 2rem;
+ }
+ 
+ .module-page .box-container .box .thumb{
+    position: relative;
+ }
+ 
+ .module-page .box-container .box .thumb span{
+    position: absolute;
+    top:1rem; left: 1rem;
+    border-radius: .5rem;
+    padding: .5rem 1.5rem;
+    background-color: rgba(0,0,0,.3);
+    color: #fff;
+    font-size: 1.5rem;
+ }
+ 
+ .module-page .box-container .box .thumb img{
+   width: 100%;
+   height: auto;
+   max-height: 25rem; /* Adjust max-height to control thumbnail size */
+   object-fit: contain; /* Ensure the full image is visible without cropping */
+   border-radius: 1rem;
+ }
+ 
+ .module-page .box-container .box .title{
+    font-size: 2rem;
+    color: var(--black-color);
+    padding-bottom: .5rem;
+    padding-top: 1rem;
+ }
+ 
+ .module-page .more-btn{
+    text-align: center;
+    margin-top: 2rem;
+ }

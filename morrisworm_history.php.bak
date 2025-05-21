@@ -1,0 +1,150 @@
+<?p    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Morris Worm Details</title>
+        <link rel="stylesheet" href="css/morrisworm_history.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    </head>ude 'header.php'; ?>
+    <?php include 'sidebar.php'; ?>
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Morris Worm Details</title>
+        <link rel="stylesheet" href="css/morrisworm_history.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    </head>
+
+    <section class="history-details">
+
+        <h1 class="heading">Morris Worm (1988)</h1>
+
+        <div class="detail-content">
+
+            <div class="detail-section">
+                <h2>Infect</h2>
+                <p>
+                    The Morris worm's infection began with its release by Robert Tappan Morris from MIT on November 2, 1988.
+                    Morris intended it as an experiment to gauge the size of the internet, but it contained a critical flaw.
+                </p>
+            </div>
+
+            <div class="detail-section">
+                <h2>Propagation</h2>
+                <p>
+                    The worm propagated by exploiting vulnerabilities in Unix systems. It used buffer overflows in the `fingerd` and `sendmail` programs,
+                    as well as `rsh` and `rexec` to execute commands remotely.  A key design flaw was its faulty check to see if a system was already infected, leading to repeated reinfections.
+                </p>
+            </div>
+
+            <div class="detail-section">
+                <h2>Damage (Impact)</h2>
+                <p>
+                    The Morris worm's uncontrolled replication led to significant system slowdowns and crashes.  This caused widespread disruption to the early internet,
+                    affecting a substantial portion of connected computers. The incident highlighted the fragility of the nascent internet infrastructure.
+                </p>
+            </div>
+
+            <div class="detail-section">
+                <h2>Recovery</h2>
+                <p>
+                    Recovery efforts involved analyzing the worm's code to understand its behavior and develop countermeasures. System administrators worked to disconnect affected machines from the network to prevent further spread.
+                    Patches were developed and distributed to fix the exploited vulnerabilities.
+                </p>
+            </div>
+
+            <div class="detail-section">
+                <h2>Lessons Learned</h2>
+                <p>
+                    The Morris worm served as a wake-up call for the cybersecurity community. It demonstrated the potential for self-replicating programs to cause widespread damage and emphasized the importance of secure coding practices,
+                    vulnerability patching, and network monitoring.  It also spurred the creation of the first Computer Emergency Response Team (CERT).
+                </p>
+            </div>
+
+        </div>        <div class="timeline-section">
+            <h2 class="section-title">Timeline of the Attack</h2>
+            
+            <div class="timeline-container">
+                <?php
+                // Include database connection and timeline functions
+                require_once 'includes/timeline_functions.php';
+                
+                // Get timeline events for Morris Worm
+                $events = getTimelineEvents('morrisworm');
+                ?>
+                <!-- Timeline Line with Points -->
+                <div class="timeline-line">
+                    <?php
+                    // Add hard-coded timeline points if database retrieval fails
+                    if (empty($events)) {
+                        $hardcodedEvents = [
+                            ['title' => 'Worm Release', 'icon_class' => 'fa-bug'],
+                            ['title' => 'Rapid Spread', 'icon_class' => 'fa-network-wired'],
+                            ['title' => 'Systems Crash', 'icon_class' => 'fa-exclamation-triangle'],
+                            ['title' => 'Containment', 'icon_class' => 'fa-shield-alt'],
+                            ['title' => 'Legal Aftermath', 'icon_class' => 'fa-gavel']
+                        ];
+                        foreach ($hardcodedEvents as $index => $event):
+                    ?>
+                    <div class="timeline-point" data-index="<?php echo $index; ?>" aria-label="<?php echo htmlspecialchars($event['title']); ?>">
+                        <i class="fas <?php echo htmlspecialchars($event['icon_class']); ?>"></i>
+                    </div>
+                    <?php 
+                        endforeach;
+                    } else {
+                        foreach ($events as $index => $event): 
+                    ?>
+                    <div class="timeline-point" data-index="<?php echo $index; ?>" aria-label="<?php echo htmlspecialchars($event['title']); ?>">
+                        <i class="fas <?php echo htmlspecialchars($event['icon_class']); ?>"></i>
+                    </div>
+                    <?php 
+                        endforeach;
+                    }
+                    ?>
+                </div>
+                
+                <!-- Timeline Event Cards -->
+                <?php
+                // Add hard-coded event cards if database retrieval fails
+                if (empty($events)) {
+                    $hardcodedEventDetails = [
+                        ['year' => '1988', 'title' => 'Worm Release - November 2, 1988', 
+                         'description' => 'Robert Tappan Morris, a graduate student at Cornell University, releases the Morris Worm from MIT. The worm was intended to gauge the size of the internet but contained a critical flaw that would cause it to infect machines multiple times.'],
+                        ['year' => '1988', 'title' => 'Rapid Spread - Within Hours', 
+                         'description' => 'The worm spreads rapidly by exploiting vulnerabilities in Unix sendmail, fingerd, and rsh/rexec services. Its multiple infection design flaw causes machines to become increasingly bogged down with each reinfection.'],
+                        ['year' => '1988', 'title' => 'Systems Crash - November 3, 1988', 
+                         'description' => 'Systems across the early internet begin to crash due to the excessive load caused by repeated infections. An estimated 6,000 machines (10% of the internet) are affected, bringing many systems to a complete halt.'],
+                        ['year' => '1988', 'title' => 'Containment - November 4-5, 1988', 
+                         'description' => 'System administrators work frantically to disconnect from the network and develop patches. Researchers at Berkeley and other institutions analyze the worm code and develop fixes to prevent infection.'],
+                        ['year' => '1988', 'title' => 'Legal Aftermath - 1989-1990', 
+                         'description' => 'Robert Morris is indicted under the 1986 Computer Fraud and Abuse Act. In 1990, he is sentenced to three years of probation, 400 hours of community service, and a fine of $10,050. The incident leads to the formation of CERT (Computer Emergency Response Team) to coordinate responses to future incidents.']
+                    ];
+                    foreach ($hardcodedEventDetails as $index => $event):
+                ?>
+                <div class="timeline-event-card" data-index="<?php echo $index; ?>">
+                    <h2><?php echo htmlspecialchars($event['year']); ?></h2>
+                    <h3><?php echo htmlspecialchars($event['title']); ?></h3>
+                    <p><?php echo htmlspecialchars($event['description']); ?></p>
+                </div>
+                <?php 
+                    endforeach;
+                } else {
+                    foreach ($events as $index => $event): 
+                ?>
+                <div class="timeline-event-card" data-index="<?php echo $index; ?>">
+                    <h2><?php echo htmlspecialchars($event['year']); ?></h2>
+                    <h3><?php echo htmlspecialchars($event['title']); ?></h3>
+                    <p><?php echo htmlspecialchars($event['description']); ?></p>
+                </div>
+                <?php
+                    endforeach;
+                }
+                ?>            </div>
+        </div>
+
+    </section>
+
+    <script src="script.js"></script>
+    <script src="timeline_debug.js"></script>
+
+    <?php include 'footer.php'; ?>

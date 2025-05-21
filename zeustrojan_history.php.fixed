@@ -1,0 +1,147 @@
+<?php include 'header.php'; ?>
+<?php include 'sidebar.php'; ?>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zeus Trojan Details</title>
+    <link rel="stylesheet" href="css/zeustrojan_history.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+
+<section class="history-details">
+
+    <h1 class="heading">Zeus Trojan (2007)</h1>
+
+    <div class="detail-content">
+
+        <div class="detail-section">
+            <h2>Infect</h2>
+            <p>
+                The Zeus trojan, also known as Zbot, typically infected systems through drive-by downloads from compromised websites or via phishing emails containing malicious attachments.
+                Users were often tricked into installing the malware by clicking on seemingly legitimate links or opening infected files.
+            </p>
+        </div>
+
+        <div class="detail-section">
+            <h2>Propagation</h2>
+            <p>
+                Zeus itself did not actively spread like a worm. Instead, its propagation relied on the spread of infected files or the user's interaction with malicious websites.
+                Once installed, it could download configuration files and additional modules to enhance its capabilities.
+            </p>
+        </div>
+
+        <div class="detail-section">
+            <h2>Damage (Impact)</h2>
+            <p>
+                Zeus's primary impact was the theft of sensitive information, particularly online banking credentials. It employed techniques like keylogging to record keystrokes and form grabbing to capture data entered into web forms.
+                This enabled attackers to commit financial fraud, resulting in significant monetary losses for individuals and organizations. Zeus was also used to create botnets for DDoS attacks.
+            </p>
+        </div>
+
+        <div class="detail-section">
+            <h2>Recovery</h2>
+            <p>
+                Recovery from Zeus infections involved removing the malware from infected systems using anti-malware software. Banks and financial institutions implemented stronger security measures,
+                such as multi-factor authentication and improved fraud detection systems, to combat the threat. Law enforcement agencies worked to disrupt Zeus botnets and prosecute the perpetrators.
+            </p>
+        </div>
+
+        <div class="detail-section">
+            <h2>Lessons Learned</h2>
+            <p>
+                The Zeus trojan highlighted the sophistication of financial malware and the importance of layered security. It underscored the need for strong passwords,
+                anti-malware protection, and user vigilance against phishing attacks and malicious websites. The incident also demonstrated the global nature of cybercrime and the challenges in combating it.
+            </p>
+        </div>
+
+    </div>
+    
+    <div class="timeline-section">
+        <h2 class="section-title">Timeline of the Attack</h2>
+        
+        <div class="timeline-container">
+            <?php
+            // Include database connection and timeline functions
+            require_once 'includes/timeline_functions.php';
+            
+            // Get timeline events for Zeus Trojan
+            $events = getTimelineEvents('zeustrojan');
+            ?>
+            <!-- Timeline Line with Points -->
+            <div class="timeline-line">
+                <?php
+                // Add hard-coded timeline points if database retrieval fails
+                if (empty($events)) {
+                    $hardcodedEvents = [
+                        ['title' => 'First Appearance', 'icon_class' => 'fa-binoculars'],
+                        ['title' => 'Widespread Distribution', 'icon_class' => 'fa-globe'],
+                        ['title' => 'Banking Targets', 'icon_class' => 'fa-university'],
+                        ['title' => 'Law Enforcement Response', 'icon_class' => 'fa-gavel'],
+                        ['title' => 'Legacy & Variants', 'icon_class' => 'fa-code-branch']
+                    ];
+                    foreach ($hardcodedEvents as $index => $event):
+                ?>
+                <div class="timeline-point" data-index="<?php echo $index; ?>" aria-label="<?php echo htmlspecialchars($event['title']); ?>">
+                    <i class="fas <?php echo htmlspecialchars($event['icon_class']); ?>"></i>
+                </div>
+                <?php 
+                    endforeach;
+                } else {
+                    foreach ($events as $index => $event): 
+                ?>
+                <div class="timeline-point" data-index="<?php echo $index; ?>" aria-label="<?php echo htmlspecialchars($event['title']); ?>">
+                    <i class="fas <?php echo htmlspecialchars($event['icon_class']); ?>"></i>
+                </div>
+                <?php 
+                    endforeach;
+                }
+                ?>
+            </div>
+            
+            <!-- Timeline Event Cards -->
+            <?php
+            // Add hard-coded event cards if database retrieval fails
+            if (empty($events)) {
+                $hardcodedEventDetails = [
+                    ['year' => '2007', 'title' => 'First Appearance - July 2007', 
+                     'description' => 'Zeus trojan first appears in the wild, initially targeting Windows users to steal banking information. This first version incorporated keylogging and form grabbing capabilities to steal sensitive data.'],
+                    ['year' => '2007-2009', 'title' => 'Widespread Distribution', 
+                     'description' => 'The malware spreads through phishing emails, drive-by downloads, and fake websites. Zeus becomes available as a "crime kit" sold on underground forums, allowing less technically skilled criminals to deploy the trojan.'],
+                    ['year' => '2009-2010', 'title' => 'Banking Targets - Major Operations', 
+                     'description' => 'Zeus is used in major cybercrime operations targeting hundreds of financial institutions worldwide. The FBI estimates that Zeus-based botnets were responsible for over $70 million in banking fraud during this period.'],
+                    ['year' => '2010-2011', 'title' => 'Law Enforcement Response', 
+                     'description' => 'Operation Trident Breach leads to multiple arrests across the US and Europe. Over 100 individuals are arrested in connection with Zeus-based fraud schemes, though the primary developers remain at large.'],
+                    ['year' => '2011-Present', 'title' => 'Legacy & Variants', 
+                     'description' => 'Zeus source code is leaked, leading to multiple variants including Gameover Zeus, Ice IX, and others. These evolved versions continue to pose significant threats to financial security worldwide, with enhanced encryption and evasion capabilities.']
+                ];
+                foreach ($hardcodedEventDetails as $index => $event):
+            ?>
+            <div class="timeline-event-card" data-index="<?php echo $index; ?>">
+                <h2><?php echo htmlspecialchars($event['year']); ?></h2>
+                <h3><?php echo htmlspecialchars($event['title']); ?></h3>
+                <p><?php echo htmlspecialchars($event['description']); ?></p>
+            </div>
+            <?php 
+                endforeach;
+            } else {
+                foreach ($events as $index => $event): 
+            ?>
+            <div class="timeline-event-card" data-index="<?php echo $index; ?>">
+                <h2><?php echo htmlspecialchars($event['year']); ?></h2>
+                <h3><?php echo htmlspecialchars($event['title']); ?></h3>
+                <p><?php echo htmlspecialchars($event['description']); ?></p>
+            </div>
+            <?php
+                endforeach;
+            }
+            ?>
+        </div>
+    </div>
+
+</section>
+
+<script src="script.js"></script>
+<script src="timeline_debug.js"></script>
+
+<?php include 'footer.php'; ?>

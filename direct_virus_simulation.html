@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Direct Unity Virus Simulation</title>
+    <link rel="stylesheet" href="VIRUS%20SIMULATION/TemplateData/style.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #1a1a1a;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            font-family: Arial, sans-serif;
+        }
+        .header {
+            background-color: #333;
+            color: white;
+            padding: 15px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-grow: 1;
+            padding: 20px;
+        }
+        #unity-container {
+            width: 960px;
+            height: 540px;
+            position: relative;
+            background: #231F20;
+        }
+        .footer {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            font-size: 12px;
+        }
+        .back-button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            text-decoration: none;
+            border-radius: 4px;
+            display: inline-block;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Unity WebGL Virus Simulation (Direct Link)</h1>
+        <p>This is a standalone version of the simulation for testing purposes.</p>
+        <a href="virus_simulation.php" class="back-button">Back to Main Simulation Page</a>
+    </div>
+
+    <div class="container">
+        <div id="unity-container" class="unity-desktop">
+            <canvas id="unity-canvas"></canvas>
+            <div id="unity-loading-bar">
+                <div id="unity-logo"></div>
+                <div id="unity-progress-bar-empty">
+                    <div id="unity-progress-bar-full"></div>
+                </div>
+            </div>
+            <div id="unity-warning"></div>
+            <div id="unity-footer">
+                <div id="unity-webgl-logo"></div>
+                <div id="unity-fullscreen-button"></div>
+                <div id="unity-build-title">CyberHygiene Virus Simulation</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        &copy; 2025 Cybersecurity Learning Platform | For educational purposes only
+    </div>
+    
+    <script>
+        var container = document.querySelector("#unity-container");
+        var canvas = document.querySelector("#unity-canvas");
+        var loadingBar = document.querySelector("#unity-loading-bar");
+        var progressBarFull = document.querySelector("#unity-progress-bar-full");
+        var fullscreenButton = document.querySelector("#unity-fullscreen-button");
+        var warningBanner = document.querySelector("#unity-warning");
+
+        function unityShowBanner(msg, type) {
+            function updateBannerVisibility() {
+                warningBanner.style.display = warningBanner.children.length ? 'block' : 'none';
+            }
+            var div = document.createElement('div');
+            div.innerHTML = msg;
+            warningBanner.appendChild(div);
+            if (type == 'error') div.style = 'background: red; padding: 10px;';
+            else {
+                if (type == 'warning') div.style = 'background: yellow; padding: 10px;';
+                setTimeout(function() {
+                    warningBanner.removeChild(div);
+                    updateBannerVisibility();
+                }, 5000);
+            }
+            updateBannerVisibility();
+        }
+
+        // Try different path formats to diagnose issues
+        var buildUrl = "VIRUS%20SIMULATION/Build";
+        var loaderUrl = buildUrl + "/VIRUS%20SIMULATION.loader.js";
+        var config = {
+            dataUrl: buildUrl + "/VIRUS%20SIMULATION.data",
+            frameworkUrl: buildUrl + "/VIRUS%20SIMULATION.framework.js",
+            codeUrl: buildUrl + "/VIRUS%20SIMULATION.wasm",
+            streamingAssetsUrl: "VIRUS%20SIMULATION/StreamingAssets",
+            companyName: "Aina Izzyani",
+            productName: "CyberHygiene Virus Simulation",
+            productVersion: "0.1",
+            showBanner: unityShowBanner,
+        };
+
+        // Make the canvas match the container
+        canvas.style.width = "960px";
+        canvas.style.height = "540px";
+
+        loadingBar.style.display = "block";
+
+        var script = document.createElement("script");
+        script.src = loaderUrl;
+        script.onload = () => {
+            createUnityInstance(canvas, config, (progress) => {
+                progressBarFull.style.width = 100 * progress + "%";
+            }).then((unityInstance) => {
+                loadingBar.style.display = "none";
+                if (fullscreenButton) {
+                    fullscreenButton.onclick = () => {
+                        unityInstance.SetFullscreen(1);
+                    };
+                }
+            }).catch((message) => {
+                // Show detailed error to help debugging
+                console.error("Unity WebGL error:", message);
+                alert("Unity WebGL error: " + message);
+                
+                // Add debugging info to the page
+                var debugDiv = document.createElement('div');
+                debugDiv.style.position = 'absolute';
+                debugDiv.style.top = '10px';
+                debugDiv.style.left = '10px';
+                debugDiv.style.backgroundColor = 'rgba(255, 0, 0, 0.8)';
+                debugDiv.style.color = 'white';
+                debugDiv.style.padding = '10px';
+                debugDiv.style.borderRadius = '5px';
+                debugDiv.style.zIndex = '999';
+                debugDiv.innerHTML = '<h3>Error Loading Simulation:</h3>' + 
+                    '<p>' + message + '</p>' +
+                    '<p>Build URL: ' + loaderUrl + '</p>' +
+                    '<p>Please check browser console for more details.</p>';
+                document.body.appendChild(debugDiv);
+            });
+        };
+        document.body.appendChild(script);
+    </script>
+</body>
+</html>

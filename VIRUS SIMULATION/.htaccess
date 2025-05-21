@@ -1,0 +1,17 @@
+# Set proper MIME type for WebAssembly files in this directory
+AddType application/wasm .wasm
+AddType application/javascript .js
+AddType application/octet-stream .data
+AddType text/html .html
+
+# Enable CORS for Unity WebGL content
+<FilesMatch "\.(wasm|data|js)$">
+    Header set Access-Control-Allow-Origin "*"
+</FilesMatch>
+
+# Prevent caching of WASM files to ensure latest version is used
+<FilesMatch "\.(wasm)$">
+    Header set Cache-Control "no-cache, no-store, must-revalidate"
+    Header set Pragma "no-cache"
+    Header set Expires 0
+</FilesMatch>

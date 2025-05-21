@@ -1,0 +1,88 @@
+<?php include 'header.php'; ?>
+<?php include 'sidebar.php'; ?>
+
+<?php
+// Include database connection
+require_once 'includes/db_connect.php';
+
+// Get all malware types from the database
+$sql = "SELECT * FROM malware_types ORDER BY name ASC";
+$result = $conn->query($sql);
+
+$malware_types = array();
+if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        $malware_types[] = $row;
+    }
+}
+?>
+
+<!-- History/Real-World Scenarios Page with Bootstrap -->
+<div class="container content-container">
+   <div class="p-4 bg-white rounded shadow-sm">
+      <h1 class="text-center mb-4">Real-World Malware Scenarios</h1>
+      <p class="lead text-center mb-5">Learn about famous malware incidents throughout computing history.</p>
+
+      <div class="row g-4">
+         <?php foreach ($malware_types as $malware): ?>
+         <div class="col-md-4 mb-4">
+            <div class="card h-100 border-0 shadow-sm text-center">
+               <img src="images/<?php echo htmlspecialchars($malware['image_path']); ?>" alt="<?php echo htmlspecialchars($malware['name']); ?>" class="card-img-top p-3" style="max-height: 200px; object-fit: contain;">
+               <div class="card-body">
+                  <h3 class="card-title"><?php echo htmlspecialchars($malware['name']); ?></h3>
+                  <p class="card-text"><?php echo htmlspecialchars($malware['short_description']); ?></p>
+               </div>
+               <div class="card-footer bg-transparent border-0 pb-4">
+                  <a href="<?php echo htmlspecialchars($malware['slug']); ?>_history.php" class="btn btn-primary">View Details</a>
+               </div>
+            </div>
+         </div>
+         <?php endforeach; ?>
+
+         <?php if (empty($malware_types)): ?>
+         <!-- Show these hardcoded entries if no database entries exist -->
+         <div class="col-md-4 mb-4">
+            <div class="card h-100 border-0 shadow-sm text-center">
+               <img src="images/iloveyou.jpg" alt="ILOVEYOU Virus" class="card-img-top p-3" style="max-height: 200px; object-fit: contain;">
+               <div class="card-body">
+                  <h3 class="card-title">ILOVEYOU Virus</h3>
+                  <p class="card-text">An email virus that infected millions of systems worldwide in 2000.</p>
+               </div>
+               <div class="card-footer bg-transparent border-0 pb-4">
+                  <a href="iloveyou_history.php" class="btn btn-primary">View Details</a>
+               </div>
+            </div>
+         </div>
+         
+         <div class="col-md-4 mb-4">
+            <div class="card h-100 border-0 shadow-sm text-center">
+               <img src="images/morrisworm.jpg" alt="Morris Worm" class="card-img-top p-3" style="max-height: 200px; object-fit: contain;">
+               <div class="card-body">
+                  <h3 class="card-title">Morris Worm</h3>
+                  <p class="card-text">The first worm to spread across the internet in 1988.</p>
+               </div>
+               <div class="card-footer bg-transparent border-0 pb-4">
+                  <a href="morrisworm_history.php" class="btn btn-primary">View Details</a>
+               </div>
+            </div>
+         </div>
+
+         <div class="col-md-4 mb-4">
+            <div class="card h-100 border-0 shadow-sm text-center">
+               <img src="images/zeustrojan.jpg" alt="Zeus Trojan" class="card-img-top p-3" style="max-height: 200px; object-fit: contain;">
+               <div class="card-body">
+                  <h3 class="card-title">Zeus Trojan</h3>
+                  <p class="card-text">A banking trojan that stole financial information starting in 2007.</p>
+               </div>
+               <div class="card-footer bg-transparent border-0 pb-4">
+                  <a href="zeustrojan_history.php" class="btn btn-primary">View Details</a>
+               </div>
+            </div>
+         </div>
+         <?php endif; ?>
+
+      </div>
+   </div>
+</div>
+
+<?php include 'footer.php'; ?>

@@ -1,0 +1,50 @@
+@import url("dashboard.css");
+
+.history-page .box-container{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap:1.5rem;
+    justify-content: center;
+    align-items: flex-start;
+ }
+ 
+ .history-page .box-container .box{
+    border-radius: .5rem;
+    background-color: var(--white-color);
+    padding: 2rem;
+ }
+ 
+ .history-page .box-container .box .thumb{
+    position: relative;
+ }
+ 
+ .history-page .box-container .box .thumb span{
+    position: absolute;
+    top:1rem; left: 1rem;
+    border-radius: .5rem;
+    padding: .5rem 1.5rem;
+    background-color: rgba(0,0,0,.3);
+    color: #fff;
+    font-size: 1.5rem;
+ }
+ 
+ .history-page .box-container .box .thumb img{
+    width: 100%;
+    height: auto;
+    max-height: 25rem; /* Adjust max-height to control thumbnail size */
+    object-fit: contain; /* Ensure the full image is visible without cropping */
+    border-radius: 1rem;
+ }
+ 
+ .history-page .box-container .box .title{
+    font-size: 2rem;
+    color: var(--black-color);
+    padding-bottom: .5rem;
+    padding-top: 1rem;
+ }
+ 
+ .history-page .more-btn{
+    text-align: center;
+    margin-top: 2rem;
+ }
+ 

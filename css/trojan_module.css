@@ -1,0 +1,126 @@
+@import url("dashboard.css"); /* Import dashboard styles for overall layout */
+
+    /* General Module Styles (You can keep this if it's the same as virus_module.css and worm_module.css) */
+    .module-details-section {
+        width: 90%;
+        max-width: 1000px;
+        margin: 2rem auto;
+        background-color: var(--white-color);
+        padding: 2rem;
+        border-radius: 1rem;
+        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+        font-family: 'Poppins', sans-serif;
+    }
+
+    .module-title {
+        font-size: 2.5rem;
+        color: var(--primary-color);
+        margin-bottom: 1.5rem;
+        border-bottom: 0.2rem solid var(--primary-color);
+        padding-bottom: 1rem;
+        text-align: center;
+    }
+
+    .module-content {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    .module-subsection {
+        margin-bottom: 1.5rem;
+    }
+
+    .subsection-title {
+        font-size: 2rem;
+        color: var(--primary-color);
+        margin-bottom: 1rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 0.1rem solid var(--secondary-color);
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .module-paragraph {
+        font-size: 1.1rem;
+        color: var(--dark-color);
+        line-height: 1.6;
+    }
+
+    .module-list {
+        font-size: 1.1rem;
+        color: var(--dark-color);
+        list-style-type: none;
+        padding-left: 2rem;
+    }
+
+    .module-list li {
+        margin-bottom: 0.5rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    /* Grid Layout for Types and Examples */
+    .module-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1.5rem;
+    }
+
+    .module-card {
+        background-color: var(--light-bg);
+        border-radius: 0.5rem;
+        padding: 1.5rem;
+        box-shadow: 0 0.2rem 0.5rem rgba(0, 0, 0, 0.1);
+    }
+
+    .card-title {
+        font-size: 1.3rem;
+        color: var(--black-color);
+        margin-bottom: 0.8rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .card-text {
+        font-size: 1rem;
+        color: var(--dark-color);
+    }
+
+    /* Responsive Design */
+    @media screen and (max-width: 768px) {
+        .module-details-section {
+            width: 95%;
+            margin: 1rem auto;
+            padding: 1.5rem;
+        }
+
+        .module-title {
+            font-size: 2rem;
+        }
+
+        .subsection-title {
+            font-size: 1.6rem;
+        }
+
+        .module-paragraph,
+        .module-list {
+            font-size: 1rem;
+        }
+    }
+
+    /* Trojan-Specific Styles (Example - Adjust as needed) */
+    .module-title .fa-horse {
+        color: #FF9800; /* Example: Orange color for trojan icon */
+    }
+
+    .module-card .fa-door-open,
+    .module-card .fa-download,
+    .module-card .fa-key,
+    .module-card .fa-money-bill-wave,
+    .module-card .fa-lock {
+        color: #FF9800; /* Example: Orange color for trojan type icons */
+    }

@@ -1,0 +1,142 @@
+/* Welcome Section Styles */
+.welcome-section {
+    margin-top: 2rem;
+    margin-bottom: 8rem;
+}
+
+.welcome-container {
+    text-align: center;
+    padding: 3rem;
+    background-color: var(--white-color);
+    border-radius: 1rem;
+    box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.1);
+}
+
+.welcome-heading {
+    font-size: 3.5rem;
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+    position: relative;
+    display: inline-block;
+}
+
+.welcome-heading::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 4px;
+    background: linear-gradient(to right, var(--primary-color), transparent);
+    border-radius: 2px;
+}
+
+.welcome-text {
+    font-size: 1.8rem;
+    color: var(--dark-color);
+    max-width: 80%;
+    margin: 0 auto 4rem auto;
+    line-height: 1.6;
+}
+
+.welcome-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2.5rem;
+    margin-top: 3rem;
+}
+
+.welcome-card {
+    background-color: var(--light-color);
+    border-radius: 1rem;
+    padding: 2.5rem 2rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.welcome-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.welcome-card i {
+    font-size: 4rem;
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+}
+
+.welcome-card h3 {
+    font-size: 2.2rem;
+    color: var(--dark-color);
+    margin-bottom: 1.5rem;
+}
+
+.welcome-card p {
+    font-size: 1.6rem;
+    color: var(--dark-color);
+    margin-bottom: 2rem;
+    line-height: 1.5;
+}
+
+.welcome-btn {
+    display: inline-block;
+    background-color: var(--primary-color);
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 3rem;
+    font-size: 1.6rem;
+    transition: background-color 0.3s ease;
+    text-decoration: none;
+}
+
+.welcome-btn:hover {
+    background-color: var(--dark-color);
+}
+
+/* Dark mode styles */
+.dark-mode .welcome-container {
+    background-color: var(--light-bg);
+}
+
+.dark-mode .welcome-heading {
+    color: var(--light-color);
+}
+
+.dark-mode .welcome-text {
+    color: var(--light-color);
+}
+
+.dark-mode .welcome-card {
+    background-color: var(--dark-color);
+}
+
+.dark-mode .welcome-card h3 {
+    color: var(--light-color);
+}
+
+.dark-mode .welcome-card p {
+    color: var(--light-color);
+}
+
+@media (max-width: 768px) {
+    .welcome-heading {
+        font-size: 2.8rem;
+    }
+    
+    .welcome-text {
+        font-size: 1.6rem;
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .welcome-heading {
+        font-size: 2.4rem;
+    }
+    
+    .welcome-container {
+        padding: 2rem 1.5rem;
+    }
+}

@@ -1,0 +1,5 @@
+/* Timeline connector fix to ensure all timeline event cards don't show connector lines */
+.timeline-event-card::before,
+.timeline-event-card::after {
+    display: none !important;
+}
