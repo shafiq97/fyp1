@@ -1,0 +1,65 @@
+/* CSS to fix sidebar and module content overlap issues */
+
+/* Global fix - ensure content doesn't overlap with sidebar */
+.dashboard-page .content-container {
+    transition: padding-left 0.3s ease, margin-left 0.3s ease !important;
+    box-sizing: border-box !important;
+}
+
+/* When sidebar is visible on desktop */
+@media (min-width: 992px) {
+    /* Fix for module pages */
+    .dashboard-page.module-page:not(.active) .content-container,
+    .dashboard-page:not(.active) .module-details-section {
+        margin-left: 280px !important; /* Match sidebar width */
+        width: calc(100% - 280px) !important; /* Subtract sidebar width */
+        max-width: calc(100% - 280px) !important; /* Prevent overflow */
+        padding-left: 20px !important; /* Add spacing from sidebar */
+        padding-right: 20px !important; /* Add spacing on right */
+    }
+    
+    /* Adjust module card layout when sidebar is visible */
+    .dashboard-page.module-page:not(.active) .box-container {
+        grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr)) !important;
+    }
+    
+    /* Fix for specific module pages with details section */
+    .dashboard-page:not(.active) .module-details-section {
+        padding-left: 2rem !important; /* Add some spacing */
+    }
+    
+    /* Reset when sidebar is collapsed */
+    .dashboard-page.active .content-container,
+    .dashboard-page.active .module-details-section {
+        margin-left: auto !important;
+        margin-right: auto !important;
+        width: 100% !important;
+        max-width: 1500px !important; /* Match our expanded container */
+    }
+    
+    /* Specific fix for module content to prevent it from being too wide */
+    .dashboard-page:not(.active) .module-content {
+        max-width: 100% !important; /* Use available space */
+    }
+}
+
+/* Specific fixes for virus, worm, and trojan module pages */
+@media (min-width: 992px) {
+    /* When sidebar is visible, adjust grid columns to fit available space */
+    .dashboard-page:not(.active) .module-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)) !important;
+    }
+}
+
+/* Extra large screens - allow more content width even with sidebar */
+@media (min-width: 1600px) {
+    .dashboard-page:not(.active) .content-container,
+    .dashboard-page:not(.active) .module-details-section {
+        max-width: calc(100% - 280px) !important; /* Use more space on large screens */
+    }
+    
+    /* Wider grid items on large screens */
+    .dashboard-page:not(.active) .module-grid {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)) !important;
+    }
+}

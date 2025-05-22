@@ -9,11 +9,35 @@
             header.style.cssText = "position:fixed !important; top:0 !important; left:0 !important; right:0 !important; width:100vw !important; max-width:100vw !important; margin:0 !important; padding:0 !important; transform:none !important; overflow:visible !important; z-index:1000 !important;";
             
             // Get all header children and ensure they're properly sized
-            const headerContent = header.querySelector('.flex');
+            const headerContent = header.querySelector('.container-fluid');
             if (headerContent) {
                 headerContent.style.width = '100%';
                 headerContent.style.maxWidth = '100%';
                 headerContent.style.boxSizing = 'border-box';
+                headerContent.style.display = 'flex';
+                headerContent.style.alignItems = 'center';
+                headerContent.style.paddingLeft = '15px';
+                headerContent.style.paddingRight = '15px';
+                headerContent.style.zIndex = '1100';
+                headerContent.style.position = 'relative';
+            }
+            
+            // Make sure logo is visible and on top
+            const logo = header.querySelector('.navbar-brand');
+            if (logo) {
+                logo.style.display = 'block';
+                logo.style.visibility = 'visible';
+                logo.style.opacity = '1';
+                logo.style.zIndex = '1200';
+                logo.style.position = 'relative';
+            }
+            
+            // Ensure logo image is visible
+            const logoImg = header.querySelector('.navbar-brand img');
+            if (logoImg) {
+                logoImg.style.display = 'block';
+                logoImg.style.visibility = 'visible';
+                logoImg.style.opacity = '1';
             }
         }
         

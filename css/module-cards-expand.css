@@ -1,0 +1,56 @@
+/* CSS to enhance module cards on the main module page */
+
+/* Increase card size and spacing for better visualization */
+.module-page .card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin-bottom: 25px !important;
+}
+
+.module-page .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Increase image size in cards */
+.module-page .card img.card-img-top {
+    max-height: 220px !important; /* Increased from 200px */
+    padding: 15px !important;
+}
+
+/* Better button styling */
+.module-page .card .btn-primary {
+    padding: 8px 20px !important;
+    font-size: 16px !important;
+    border-radius: 5px !important;
+}
+
+/* Responsive adjustments for larger screens */
+@media (min-width: 1400px) {
+    .module-page .content-container {
+        max-width: 1500px !important;
+    }
+    
+    .module-page .card {
+        min-height: 450px !important;
+    }
+    
+    .module-page .card img.card-img-top {
+        max-height: 250px !important;
+    }
+}
+
+/* Responsive adjustments for medium screens */
+@media (min-width: 992px) and (max-width: 1399px) {
+    .module-page .card {
+        min-height: 420px !important;
+    }
+}
+
+/* Better padding and spacing in module cards */
+.module-page .card-body {
+    padding: 1.5rem !important;
+}
+
+.module-page .card-footer {
+    padding-top: 1rem !important;
+}

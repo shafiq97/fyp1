@@ -1,0 +1,76 @@
+/* Timeline Progress Line Fix
+ * This CSS will ensure the progress line works correctly with any number of points
+ */
+
+/* Reset progress bar and ensure it works with variable number of points */
+.timeline-line {
+    --total-points: 5; /* Default value, will be overridden by JS */
+}
+
+/* Clear hardcoded progress steps */
+.timeline-container:has(.timeline-point.active) .timeline-line::before {
+    width: var(--progress-width, 0%) !important;
+}
+
+/* Progress line style */
+.timeline-line::before,
+.timeline-line::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    background: linear-gradient(to right, #5090C1, #E25046);
+    transition: width 0.5s ease;
+    z-index: 1;
+}
+
+/* Progress line colors for different history pages */
+.morris-timeline .timeline-line::before,
+.morris-timeline .timeline-line::after {
+    background: linear-gradient(to right, #5090C1, #E25046);
+}
+
+.iloveyou-timeline .timeline-line::before,
+.iloveyou-timeline .timeline-line::after {
+    background: linear-gradient(to right, #E25046, #FF9642);
+}
+
+.zeus-timeline .timeline-line::before,
+.zeus-timeline .timeline-line::after {
+    background: linear-gradient(to right, #44B3B2, #5090C1);
+}
+
+/* Timeline point positioning for variable number of points */
+.timeline-line {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+}
+
+/* Remove any hardcoded point positions */
+.timeline-line .timeline-point {
+    position: relative !important;
+    left: auto !important; /* Remove hardcoded left position */
+    transform: translateY(-50%) !important;
+}
+
+/* First and last point special handling */
+.timeline-line .timeline-point:first-child {
+    margin-left: 0 !important;
+}
+
+.timeline-line .timeline-point:last-child {
+    margin-right: 0 !important;
+}
+
+/* Special hover states */
+.timeline-line .timeline-point:hover,
+.timeline-line .timeline-point.active {
+    transform: translateY(-50%) scale(1.1) !important;
+}
+
+/* Ensure progress width adapts to actual number of timeline points */
+.timeline-event-card {
+    transition: all 0.5s ease;
+}

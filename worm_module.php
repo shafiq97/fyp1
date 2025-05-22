@@ -1,15 +1,18 @@
 <?php include 'header.php'; ?>
-    <?php include 'sidebar.php'; ?>
-
-    <head>
+    <?php include 'sidebar.php'; ?>    <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Worm Module</title>
-        <link rel="stylesheet" href="css/worm_module.css">
+        <title>Worm Module</title>        <link rel="stylesheet" href="css/worm_module.css">
+        <link rel="stylesheet" href="css/module-layout-fix.css">
+        <link rel="stylesheet" href="css/module-container-expand.css">
+        <link rel="stylesheet" href="css/sidebar-module-fix.css">
+        <link rel="stylesheet" href="css/module-grid-fix.css">
+        <link rel="stylesheet" href="css/sidebar-spacing-fix.css">
+        <link rel="stylesheet" href="css/logo-fix.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     </head>
 
-    <section class="module-details-section">
+    <section class="module-details-section content-container">
         <h1 class="module-title"><i class="fas fa-worm"></i> Worm Module</h1>
 
         <div class="module-content">

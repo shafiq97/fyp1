@@ -1,12 +1,22 @@
-/* Bootstrap-compatible layout fixes */
+/*/* Make sure the body has proper spacing for fixed navbar */
+body {
+    padding-top: 60px; /* Space for fixed navbar */
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    font-size: var(--font-size-base, 16px);
+    line-height: 1.5;
+}-compatible layout fixes */
 
 /* Make sure the body has proper spacing for fixed navbar */
 body {
     padding-top: 60px; /* Space for fixed navbar */
-    padding-bottom: 60px; /* Space for fixed footer */
+    padding-bottom: 0; /* No footer padding needed */
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    font-size: var(--font-size-base, 16px);
+    line-height: 1.5;
 }
 
 /* Main content container */
@@ -69,16 +79,46 @@ body {
 
 /* Sidebar adjustments */
 .side-bar {
-    top: 56px; /* Match Bootstrap navbar height */
-    height: calc(100vh - 116px); /* Full height minus header and footer */
+    top: 60px; /* Match Bootstrap navbar height with extra space */
+    height: calc(100vh - 120px); /* Full height minus header and footer */
     position: fixed;
     width: 250px;
-    z-index: 990;
+    z-index: 900; /* Lower than header */
     background-color: white;
     overflow-y: auto;
     transition: all 0.3s ease;
     border-right: 1px solid rgba(0,0,0,0.1);
     left: 0; /* Default position for desktop */
+    padding-top: 15px; /* Add top padding to avoid overlap with header */
+}
+
+/* When sidebar is closed */
+.dashboard-page.active .content-container,
+.dashboard-page.active .profile-container,
+.dashboard-page.active .profile-page {
+    padding-left: 20px; /* Reset to normal padding when sidebar is closed */
+}
+
+/* For mobile devices */
+@media (max-width: 992px) {
+    .dashboard-page .content-container,
+    .dashboard-page .profile-container,
+    .dashboard-page .profile-page {
+        padding-left: 20px; /* Use normal padding on mobile */
+    }
+    
+    .side-bar {
+        left: -260px; /* Hide by default on mobile */
+    }
+    
+    .side-bar.active {
+        left: 0; /* Show when toggled on mobile */
+    }
+}
+
+/* Additional sidebar content styling */
+.sidebar-content {
+    padding-top: 20px; /* Ensure content is below header */
 }
 
 /* Content container position when sidebar is shown (desktop default) */
@@ -91,8 +131,11 @@ body:not(.dashboard-page) .content-container {
 
 .dashboard-page .content-container,
 .dashboard-page .profile-container {
-    margin-left: 270px; /* 250px sidebar + 20px spacing */
-    transition: margin-left 0.3s ease;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 1200px;
+    transition: all 0.3s ease;
+    padding-left: 280px; /* Adjust for sidebar width + some spacing */
 }
 
 /* Footer styling */

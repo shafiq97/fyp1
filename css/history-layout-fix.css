@@ -1,0 +1,89 @@
+/* CSS fixes for all history pages to ensure proper centering with sidebar */
+
+/* Make the history section work with content container padding */
+.history-details {
+    background-color: var(--white-color);
+    border-radius: 0.5rem;
+    box-shadow: 0 0.2rem 0.5rem rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+    padding: 2rem;
+}
+
+/* Inner content should have max width to look good */
+.detail-content {
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Ensure the heading is also centered properly */
+.history-details .heading {
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: var(--font-size-heading-1, 2.5rem);
+    border-bottom: var(--border);
+    padding-bottom: 1.5rem;
+    margin-bottom: 2.5rem;
+}
+
+/* History text enhancements */
+.history-details .detail-section p {
+    font-size: var(--font-size-lg, 18px);
+    line-height: 1.6;
+}
+
+.history-details .detail-section ul li {
+    font-size: var(--font-size-lg, 18px);
+    line-height: 1.6;
+    margin-bottom: 10px;
+}
+
+.history-details .detail-section h2 {
+    font-size: var(--font-size-heading-2, 2rem);
+    margin-bottom: 1.5rem;
+    color: var(--primary-color);
+}
+
+/* Timeline container positioning */
+.timeline-container {
+    width: 100%;
+    max-width: 100%;
+    padding: 30px 0;
+    overflow-x: hidden;
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+    .history-details {
+        padding: 1.5rem;
+    }
+    
+    .timeline-container {
+        padding: 20px 0;
+    }
+    
+    .history-details .heading {
+        font-size: 2rem;
+        margin-bottom: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .history-details {
+        padding: 1rem;
+    }
+    
+    .history-details .heading {
+        font-size: 1.75rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .history-details .detail-section h2 {
+        font-size: 1.5rem;
+    }
+    
+    .timeline-container {
+        padding: 15px 0;
+    }
+}

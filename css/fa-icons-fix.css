@@ -1,0 +1,215 @@
+/* 
+ * Font Awesome Icon Fix
+ * This CSS file provides fallbacks for potentially problematic Font Awesome icons
+ */
+
+/* Base styles for timeline points */
+.timeline-point {
+    position: relative !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 70px !important; /* Increased significantly */
+    height: 70px !important; /* Increased significantly */
+    border: 3px solid #3498db !important; /* Thicker border */
+    background-color: white !important;
+    border-radius: 50% !important;
+    z-index: 5 !important;
+    cursor: pointer !important;
+    transform-origin: center !important;
+    transition: all 0.3s ease !important;
+    margin: 0 !important; /* Reset margin to fix spacing */
+    flex-shrink: 0 !important; /* Prevent shrinking */
+}
+
+/* Base styles for all icons */
+.timeline-point i {
+    font-style: normal !important;
+    font-variant: normal !important;
+    text-rendering: auto !important;
+    -webkit-font-smoothing: antialiased !important;
+    font-size: 2em !important; /* Increased significantly */
+    line-height: 1 !important;
+    display: inline-block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    color: #3498db !important;
+    transition: color 0.3s ease !important;
+}
+
+/* Specific styles for each icon */
+.timeline-point i[class*="fa-"] {
+    font-family: "Font Awesome 6 Free" !important;
+    font-weight: 900 !important;
+    z-index: 6 !important;
+}
+
+/* Individual icon styles */
+.timeline-point[data-index="0"] i.fa-virus,
+.timeline-point[data-index="1"] i.fa-share-nodes,
+.timeline-point[data-index="2"] i.fa-globe,
+.timeline-point[data-index="3"] i.fa-shield-halved,
+.timeline-point[data-index="4"] i.fa-chart-line {
+    transform: none !important;
+    display: inline-block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+/* Hover and active states */
+.timeline-point:hover i,
+.timeline-point.active i {
+    color: #e74c3c !important;
+}
+
+/* Active state styles */
+.timeline-point.active {
+    border-color: #e74c3c !important;
+    transform: scale(1.1) !important;
+    box-shadow: 0 0 15px rgba(231, 76, 60, 0.3) !important;
+}
+
+.timeline-point.active i {
+    color: #e74c3c !important;
+}
+
+/* Hover state styles - only apply when not active */
+.timeline-point:not(.active):hover {
+    transform: scale(1.1) !important;
+}
+
+.timeline-point:not(.active):hover i {
+    color: #e74c3c !important;
+}
+
+/* Timeline line styles */
+.timeline-line {
+    position: relative !important;
+    height: 6px !important; /* Thicker line */
+    background-color: #3498db !important;
+    margin: 4em 0 !important; /* More vertical margin */
+    padding: 0 !important; /* Remove horizontal padding to fix positioning */
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    max-width: 60% !important; /* Further reduced width to prevent overlap */
+    margin-left: auto !important;
+    margin-right: auto !important;
+    width: 100% !important;
+    box-sizing: content-box !important;
+}
+
+/* Progress line */
+.timeline-line::before {
+    content: '' !important;
+    position: absolute !important;
+    left: 0 !important;
+    top: 0 !important;
+    height: 100% !important;
+    width: var(--progress-width, 0%) !important;
+    background: linear-gradient(to right, #3498db, #e74c3c) !important;
+    transition: width 0.3s ease !important;
+    z-index: 1 !important;
+}
+
+/* Fix specific icon mappings if needed */
+.fas.fa-share-alt::before {
+    content: "\f1e0"; /* fontawesome 6 code for fa-share-nodes */
+}
+
+.fas.fa-shield-alt::before {
+    content: "\e249"; /* fontawesome 6 code for fa-shield-halved */
+}
+
+/* Explicit styling for timeline points with problematic icons */
+.timeline-point[data-index="1"] i.fa-share-alt {
+    display: inline-block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    color: currentColor !important;
+}
+
+.timeline-point[data-index="3"] i.fa-shield-alt {
+    display: inline-block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    color: currentColor !important;
+}
+
+/* Fix for other potentially problematic icons */
+.fas.fa-binoculars::before {
+    content: "\f1e5"; /* ensure correct code for binoculars */
+}
+
+.fas.fa-university::before {
+    content: "\f19c"; /* ensure correct code for university */
+}
+
+/* Add special styling for the problematic timeline points */
+.timeline-point[data-index="1"] i, 
+.timeline-point[data-index="3"] i {
+    font-weight: bold !important;
+    color: #e74c3c !important; /* Make problematic icons red for visibility */
+}
+
+/* Position-specific icon styles and fallbacks */
+.timeline-point[data-index="0"] i::after {
+    content: 'Initial';
+    position: absolute;
+    font-size: 8px;
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: none; /* Hidden by default, shown if needed */
+}
+
+.timeline-point[data-index="1"] i::after {
+    content: 'Spread';
+    position: absolute;
+    font-size: 8px;
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: none; /* Hidden by default, shown if needed */
+}
+
+.timeline-point[data-index="2"] i::after {
+    content: 'Impact';
+    position: absolute;
+    font-size: 8px;
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: none; /* Hidden by default, shown if needed */
+}
+
+.timeline-point[data-index="3"] i::after {
+    content: 'Contain';
+    position: absolute;
+    font-size: 8px;
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: none; /* Hidden by default, shown if needed */
+}
+
+.timeline-point[data-index="4"] i::after {
+    content: 'After';
+    position: absolute;
+    font-size: 8px;
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: none; /* Hidden by default, shown if needed */
+}
+
+/* Icon-specific fallbacks for ILOVEYOU timeline */
+.timeline-point[data-index="0"] i.fa-virus,
+.timeline-point[data-index="1"] i.fa-share-alt,
+.timeline-point[data-index="2"] i.fa-globe,
+.timeline-point[data-index="3"] i.fa-shield-alt,
+.timeline-point[data-index="4"] i.fa-chart-line {
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: inline-block !important;
+}

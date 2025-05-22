@@ -1,0 +1,47 @@
+/* CSS to fix module grid layout with sidebar present */
+
+/* Adjust grid layout based on available space */
+.module-grid {
+    display: grid !important;
+    gap: 1.5rem !important;
+}
+
+/* Responsive grid adjustments with sidebar */
+@media (min-width: 992px) {
+    /* When sidebar is visible - fewer columns */
+    .dashboard-page:not(.active) .module-grid {
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)) !important;
+    }
+    
+    /* When sidebar is hidden - more columns */
+    .dashboard-page.active .module-grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)) !important;
+    }
+}
+
+/* Large screens can handle more columns even with sidebar */
+@media (min-width: 1400px) {
+    .dashboard-page:not(.active) .module-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)) !important;
+    }
+    
+    .dashboard-page.active .module-grid {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)) !important;
+    }
+}
+
+/* Extra large screens */
+@media (min-width: 1800px) {
+    .dashboard-page:not(.active) .module-grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)) !important;
+    }
+    
+    .dashboard-page.active .module-grid {
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)) !important;
+    }
+}
+
+/* Ensure cards have minimum height for consistency */
+.module-card {
+    min-height: 150px !important;
+}

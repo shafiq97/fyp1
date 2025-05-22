@@ -1,0 +1,42 @@
+/* CSS to override any styles that might cause sidebar overlap */
+
+/* Important fix to prevent sidebar overlap */
+@media (min-width: 992px) {
+    /* When sidebar is visible, content must leave space for it */
+    .dashboard-page:not(.active) .content-container {
+        width: calc(100% - 280px) !important;
+        margin-left: 280px !important;
+        max-width: none !important;
+        float: right !important;
+        box-sizing: border-box !important;
+    }
+    
+    /* Module specific adjustments when sidebar is visible */
+    .dashboard-page:not(.active) .module-details-section {
+        width: calc(100% - 280px) !important;
+        max-width: none !important;
+        box-sizing: border-box !important;
+        padding-left: 20px !important;
+        padding-right: 20px !important;
+    }
+    
+    /* Reset when sidebar is collapsed */
+    .dashboard-page.active .content-container,
+    .dashboard-page.active .module-details-section {
+        width: 100% !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        float: none !important;
+        max-width: 1500px !important;
+    }
+}
+
+/* For specific issues with module layout */
+@media (min-width: 992px) {
+    /* When sidebar is visible - keep content within bounds */
+    .dashboard-page:not(.active) .module-content {
+        max-width: 100% !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+    }
+}

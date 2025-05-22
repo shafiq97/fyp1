@@ -1,0 +1,27 @@
+# Large files
+VIRUS SIMULATION.zip
+
+# Common large file extensions
+*.zip
+*.rar
+*.7z
+*.mp4
+*.mov
+*.avi
+
+# Folders with large binary files
+VIRUS SIMULATION/StreamingAssets/
+
+# System files
+.DS_Store
+Thumbs.db
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs and databases
+*.log
+*.sqlite

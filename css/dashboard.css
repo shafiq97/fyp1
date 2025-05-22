@@ -162,9 +162,18 @@
     align-items: center;
 }
 
-.dashboard-page .header .flex .logo img {
-    width: 120px; /* Adjust logo size */
-    height: auto;
+.dashboard-page .header .navbar-brand {
+    padding-left: 15px;
+    margin-left: 0;
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+.dashboard-page .header .navbar-brand img {
+    height: 40px;
+    width: auto;
+    object-fit: contain;
 }
 
 /* Search Bar */
@@ -245,13 +254,13 @@
 /*----- Sidebar -----*/
 .dashboard-page .side-bar {
     position: fixed;
-    top: 0;
+    top: 60px; /* Start below header */
     left: 0;
-    height: 100vh;
+    height: calc(100vh - 60px); /* Adjust height to account for header */
     width: 30rem;
     background-color: var(--primary-color);
     border-right: var(--border);
-    z-index: 1200;
+    z-index: 900; /* Below header */
 }
 
 .dashboard-page .side-bar .close-side-bar {
@@ -452,10 +461,8 @@
     width: 100% !important;
 }
 
-/* Ensure header and footer are always 100% width regardless of sidebar state */
-.dashboard-page .header,
-.dashboard-page .footer,
-.footer {
+/* Ensure header is always 100% width regardless of sidebar state */
+.dashboard-page .header {
     width: 100vw !important;
     left: 0 !important;
     right: 0 !important;

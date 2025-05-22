@@ -1,0 +1,50 @@
+/* CSS to fix spacing between sidebar and module content */
+
+/* General container fix */
+.dashboard-page .content-container {
+    box-sizing: border-box !important;
+}
+
+/* When sidebar is visible - desktop view */
+@media (min-width: 992px) {
+    /* When sidebar is visible, add margin */
+    .dashboard-page:not(.active) .content-container {
+        margin-left: 280px !important; /* Sidebar width */
+        width: calc(100% - 280px) !important; /* Remaining width */
+        padding-left: 20px !important; /* Add padding for spacing */
+        padding-right: 20px !important; /* Add padding for spacing */
+    }
+    
+    /* Special consideration for module details section */
+    .dashboard-page:not(.active) .module-details-section {
+        max-width: calc(100% - 280px) !important; /* Full width minus sidebar */
+    }
+    
+    /* Adjust module content to not be too wide */
+    .dashboard-page:not(.active) .module-content {
+        max-width: 100% !important; /* Use available space */
+    }
+    
+    /* When sidebar is hidden, reset positioning */
+    .dashboard-page.active .content-container {
+        margin-left: auto !important;
+        margin-right: auto !important;
+        width: 100% !important;
+        max-width: 1400px !important; /* Match our expanded container */
+        padding-left: 20px !important;
+        padding-right: 20px !important;
+    }
+}
+
+/* For large screens - add more space on sides */
+@media (min-width: 1600px) {
+    .dashboard-page:not(.active) .content-container {
+        padding-left: 30px !important;
+        padding-right: 30px !important;
+    }
+    
+    .dashboard-page.active .content-container {
+        padding-left: 30px !important;
+        padding-right: 30px !important;
+    }
+}

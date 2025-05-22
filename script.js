@@ -28,11 +28,34 @@ document.addEventListener('DOMContentLoaded', function() {
     if (menuBtn && sideBar) {
         menuBtn.onclick = function(e) {
             e.preventDefault();
-            // On mobile: Toggle the sidebar visibility with active class
-            if (window.innerWidth < 992) {
-                sideBar.classList.toggle('active');
-                if (body) body.classList.toggle('active');
+            // Toggle the sidebar visibility with active class
+            sideBar.classList.toggle('active');
+            if (body) body.classList.toggle('active');
+            
+            // Force the navbar-brand to stay on top
+            const logo = document.querySelector('.navbar-brand');
+            if (logo) {
+                logo.style.zIndex = '1200';
+                logo.style.position = 'relative';
+                logo.style.visibility = 'visible';
+                logo.style.display = 'block';
             }
+            
+            // Ensure logo image is visible
+            const logoImg = document.querySelector('.navbar-brand img');
+            if (logoImg) {
+                logoImg.style.display = 'block';
+                logoImg.style.visibility = 'visible';
+                logoImg.style.opacity = '1';
+            }
+            
+            // Ensure container is properly sized
+            const headerContainer = document.querySelector('.header .container-fluid');
+            if (headerContainer) {
+                headerContainer.style.zIndex = '1100';
+                headerContainer.style.position = 'relative';
+            }
+            
             adjustPageLayout();
         };
     }
@@ -70,28 +93,30 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Check if current page is history, module, or simulation
         const path = window.location.pathname;
-        const isSpecialPage = path.includes('history.php') || path.includes('module.php') || path.includes('simulation.php');
+        const isSpecialPage = path.includes('history.php') || path.includes('module.php') || 
+                             path.includes('simulation.php') || path.includes('profile.php') ||
+                             path.includes('virus_simulation.php');
         
         contentContainers.forEach(container => {
             if (container) {
                 container.style.minHeight = `calc(100vh - ${headerHeight + footerHeight + 40}px)`;
                 container.style.paddingBottom = '3rem';
                 
-                // For special pages, center the content
-                if (isSpecialPage) {
-                    container.style.marginLeft = 'auto';
-                    container.style.marginRight = 'auto';
-                    container.style.maxWidth = '1200px';
-                }
-                // For other pages, use the default sidebar layout
-                else if (window.innerWidth >= 992) {
-                    // Desktop view - sidebar is visible by default
-                    container.style.marginLeft = '270px'; // Always leave space for sidebar on desktop
-                    container.style.marginRight = 'auto';
+                // Always center the container but adjust padding for sidebar on desktop
+                container.style.marginLeft = 'auto';
+                container.style.marginRight = 'auto';
+                container.style.maxWidth = '1200px';
+                
+                // Check if sidebar should be active
+                const isSidebarActive = document.querySelector('.dashboard-page') && !document.querySelector('.dashboard-page.active');
+                
+                // Set appropriate padding based on device and sidebar state
+                if (window.innerWidth >= 992 && isSidebarActive && !isSpecialPage) {
+                    // Desktop view with visible sidebar - add padding for sidebar
+                    container.style.paddingLeft = '280px';
                 } else {
-                    // Mobile view - content takes full width
-                    container.style.marginLeft = 'auto';
-                    container.style.marginRight = 'auto';
+                    // Mobile view or hidden sidebar - reset padding
+                    container.style.paddingLeft = '20px';
                 }
             }
         });

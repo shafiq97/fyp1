@@ -91,11 +91,12 @@ $active_tab = $_GET['tab'] ?? 'profile';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Profile | <?php echo htmlspecialchars($user['username']); ?></title>
-    <!-- Bootstrap CSS -->
+    <title>User Profile | <?php echo htmlspecialchars($user['username']); ?></title>    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="bootstrap.min.css">
     <link rel="stylesheet" href="css/profile.css">
     <link rel="stylesheet" href="css/bootstrap-layout.css">
+    <link rel="stylesheet" href="css/profile-layout-fix.css">
+    <link rel="stylesheet" href="css/logo-fix.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
 
@@ -104,7 +105,7 @@ $active_tab = $_GET['tab'] ?? 'profile';
 <?php include 'header.php'; ?>
 <?php include 'sidebar.php'; ?>
 
-<div class="container content-container">
+<div class="container content-container profile-page">
     <div class="profile-container shadow-sm rounded">
         <!-- Profile Header -->
         <div class="profile-header bg-light p-4 rounded-top d-flex flex-column flex-md-row align-items-center">
@@ -237,14 +238,7 @@ $active_tab = $_GET['tab'] ?? 'profile';
                     </li>
                 </ul>
             </div>
-        </div>        
-        <!-- Logout Section -->
-        <div class="mt-4 text-center">
-            <a href="logout.php" class="btn btn-danger">
-                <i class="fas fa-sign-out-alt me-2"></i>Logout
-            </a>
-        </div>
-    </div>
+        </div>      </div>
 </div>
 
 <?php include 'footer.php'; ?>

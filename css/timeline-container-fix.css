@@ -1,0 +1,87 @@
+/* 
+ * Timeline Container Fixes
+ * Additional styling to ensure timeline displays properly without overlap
+ */
+
+/* Parent container styling to ensure proper spacing */
+.timeline-section, 
+.history-details .timeline-section,
+.detail-section.timeline-section {
+    padding: 0 !important;
+    max-width: 1000px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    overflow: visible !important;
+    position: relative !important;
+}
+
+/* General overrides for timeline container */
+.timeline-container {
+    padding: 0 80px !important;
+    box-sizing: border-box !important;
+    overflow: visible !important;
+    position: relative !important;
+    width: 100% !important;
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+    .timeline-line {
+        max-width: 80% !important;
+    }
+    
+    .timeline-container {
+        padding: 0 50px !important;
+    }
+    
+    .timeline-point {
+        margin: 0 25px !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .timeline-line {
+        max-width: 95% !important;
+        padding: 0 50px !important;
+    }
+    
+    .timeline-point {
+        margin: 0 30px !important;
+        width: 60px !important;
+        height: 60px !important;
+    }
+}
+
+@media (max-width: 576px) {
+    .timeline-point {
+        margin: 0 20px !important;
+        width: 50px !important;
+        height: 50px !important;
+    }
+    
+    .timeline-point i {
+        font-size: 1.7em !important;
+    }
+}
+
+/* First and last timeline points need extra padding to prevent overflow */
+.timeline-point:first-child {
+    margin-left: 0 !important;
+    left: 0 !important;
+}
+
+.timeline-point:last-child {
+    margin-right: 0 !important;
+    right: 0 !important;
+}
+
+/* Reset absolute positioning for timeline points to allow proper spacing */
+.timeline-line .timeline-point {
+    position: relative !important;
+    transform: none !important;
+}
+
+/* Force absolute positioning for the outer container */
+.timeline-container {
+    position: relative !important;
+}

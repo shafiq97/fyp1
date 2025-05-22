@@ -32,19 +32,40 @@ function getTimelineEvents($malware_id) {
             WHERE $condition
             ORDER BY e.event_order ASC";
     
-    // Prepare and execute the query
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param(is_numeric($malware_id) ? "i" : "s", $malware_id);
-    $stmt->execute();
-    $result = $stmt->get_result();
-    
-    if ($result->num_rows > 0) {
-        while ($row = $result->fetch_assoc()) {
-            $events[] = $row;
+    try {
+        // Prepare and execute the query
+        $stmt = $conn->prepare($sql);
+        if (!$stmt) {
+            throw new Exception("Prepare failed: " . $conn->error);
         }
+        
+        $stmt->bind_param(is_numeric($malware_id) ? "i" : "s", $malware_id);
+        
+        if (!$stmt->execute()) {
+            throw new Exception("Execute failed: " . $stmt->error);
+        }
+        
+        $result = $stmt->get_result();
+        
+        if (!$result) {
+            throw new Exception("Result retrieval failed");
+        }
+        
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $events[] = $row;
+            }
+            error_log("Timeline events retrieved: " . count($events) . " for malware_id: " . $malware_id);
+        } else {
+            error_log("No timeline events found for malware_id: " . $malware_id);
+        }
+        
+        $stmt->close();
+    } catch (Exception $e) {
+        error_log("Timeline retrieval error: " . $e->getMessage());
+        throw $e; // Re-throw for upstream handling
     }
     
-    $stmt->close();
     return $events;
 }
 

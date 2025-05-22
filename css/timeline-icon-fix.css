@@ -1,0 +1,241 @@
+/* Timeline icon fix for all history pages with different timeline styles */
+
+/*
+ * Global timeline point styling 
+ * This applies to all timeline points regardless of structure
+ */
+.timeline-point {
+    position: relative !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 50px !important;
+    height: 50px !important;
+    border: 2px solid #3498db !important;
+    background-color: white !important;
+    border-radius: 50% !important;
+    box-sizing: border-box !important;
+    cursor: pointer !important;
+    transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+    z-index: 5 !important;
+}
+
+/* Icon styling */
+.timeline-point i {
+    position: absolute !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    font-size: 1.2rem !important; /* Ensure consistent icon size */
+    line-height: 1 !important; /* Prevent line-height issues with icons */
+    color: #3498db !important;
+    display: inline-block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+/* Ensure specific icons are visible */
+.timeline-point i.fa-virus,
+.timeline-point i.fa-share-nodes,
+.timeline-point i.fa-globe,
+.timeline-point i.fa-shield-halved,
+.timeline-point i.fa-chart-line {
+    display: inline-block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+/* Active and hover states */
+.timeline-point:hover,
+.timeline-point.active {
+    transform: scale(1.1) !important;
+    box-shadow: 0 0 15px rgba(52, 152, 219, 0.3) !important;
+}
+
+/*
+ * Timeline Line Structure (Morris Worm, ILOVEYOU style)
+ * Used when timeline points are positioned along a horizontal line
+ */
+.timeline-line {
+    position: relative !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    width: 100% !important;
+    height: 4px !important;
+    background-color: #3498db !important;
+    margin: 40px 0 !important;
+    overflow: visible !important;
+}
+
+.timeline-line .timeline-point {
+    width: 50px !important;
+    height: 50px !important;
+    border-radius: 50% !important;
+    transform: translateY(-50%);
+    z-index: 5 !important;
+}
+
+.timeline-line .timeline-point:hover, 
+.timeline-line .timeline-point.active {
+    transform: translateY(-50%) scale(1.1) !important;
+    box-shadow: 0 0 15px rgba(0,0,0,0.3) !important;
+}
+
+/* Position fixes for first and last points in line style */
+.timeline-line .timeline-point:first-child {
+    left: 0% !important;
+    transform: translateY(-50%) !important;
+}
+
+.timeline-line .timeline-point:first-child:hover,
+.timeline-line .timeline-point:first-child.active {
+    transform: translateY(-50%) scale(1.1) !important;
+}
+
+.timeline-line .timeline-point:last-child {
+    left: 100% !important;
+    transform: translateX(-50%) translateY(-50%) !important;
+}
+
+.timeline-line .timeline-point:last-child:hover,
+.timeline-line .timeline-point:last-child.active {
+    transform: translateX(-50%) translateY(-50%) scale(1.1) !important;
+}
+
+/*
+ * Row Structure Timeline (Zeus Trojan style)
+ * Used when timeline points are arranged in a row/grid
+ */
+.row .timeline-point {
+    width: 50px !important;
+    height: 50px !important;
+    border-radius: 50% !important;
+    background-color: var(--primary-color, #5090C1) !important;
+    color: white !important;
+    margin: 0 auto !important;
+    border: 3px solid #333 !important;
+}
+
+.row .timeline-point:hover,
+.row .timeline-point.active {
+    transform: scale(1.1) !important;
+    box-shadow: 0 0 15px rgba(0,0,0,0.3) !important;
+}
+
+/* Dark mode support */
+.dark-mode .timeline-point {
+    border-color: #555 !important;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .timeline-point {
+        width: 40px !important;
+        height: 40px !important;
+    }
+    
+    .timeline-point i {
+        font-size: 1rem !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .timeline-point {
+        width: 35px !important;
+        height: 35px !important;
+    }
+    
+    .timeline-point i {
+        font-size: 0.9rem !important;
+    }
+}
+
+/* Fix hover/active state to maintain icon positioning */
+.timeline-point:hover, 
+.timeline-point.active {
+    transform: translateY(-50%) scale(1.1) !important;
+}
+
+/* Ensure timeline line is properly positioned */
+.timeline-line {
+    position: relative !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+}
+
+/* Fix specific point positions on timeline */
+.timeline-point:nth-child(1) {
+    left: 0% !important;
+    transform: translateY(-50%) !important;
+}
+
+.timeline-point:nth-child(2) {
+    left: 25% !important;
+    transform: translateY(-50%) !important;
+}
+
+.timeline-point:nth-child(3) {
+    left: 50% !important;
+    transform: translateY(-50%) !important;
+}
+
+.timeline-point:nth-child(4) {
+    left: 75% !important;
+    transform: translateY(-50%) !important;
+}
+
+.timeline-point:nth-child(5) {
+    left: 100% !important;
+    transform: translateX(-100%) translateY(-50%) !important;
+}
+
+/* Adjust hover/active state for each point to maintain position */
+.timeline-point:nth-child(1):hover,
+.timeline-point:nth-child(1).active {
+    transform: translateY(-50%) scale(1.1) !important;
+}
+
+.timeline-point:nth-child(2):hover,
+.timeline-point:nth-child(2).active {
+    transform: translateY(-50%) scale(1.1) !important;
+}
+
+.timeline-point:nth-child(3):hover,
+.timeline-point:nth-child(3).active {
+    transform: translateY(-50%) scale(1.1) !important;
+}
+
+.timeline-point:nth-child(4):hover,
+.timeline-point:nth-child(4).active {
+    transform: translateY(-50%) scale(1.1) !important;
+}
+
+.timeline-point:nth-child(5):hover,
+.timeline-point:nth-child(5).active {
+    transform: translateX(-100%) translateY(-50%) scale(1.1) !important;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .timeline-point:nth-child(1) { 
+        left: 0% !important; 
+        transform: translateY(-50%) !important; 
+    }
+    
+    .timeline-point:nth-child(5) { 
+        left: 100% !important; 
+        transform: translateX(-100%) translateY(-50%) !important; 
+    }
+    
+    .timeline-point:nth-child(1):hover,
+    .timeline-point:nth-child(1).active {
+        transform: translateY(-50%) scale(1.1) !important;
+    }
+    
+    .timeline-point:nth-child(5):hover,
+    .timeline-point:nth-child(5).active {
+        transform: translateX(-100%) translateY(-50%) scale(1.1) !important;
+    }
+}

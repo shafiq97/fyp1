@@ -7,7 +7,7 @@ if (session_status() === PHP_SESSION_NONE) {
 ?>
 
 <div class="side-bar">
-    <div class="p-3">
+    <div class="p-3 sidebar-content">
         <div class="d-flex justify-content-end mb-3">
             <button type="button" id="close-side-bar" class="btn-close close-side-bar" aria-label="Close"></button>
         </div>

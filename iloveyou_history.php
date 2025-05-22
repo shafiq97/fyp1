@@ -1,15 +1,40 @@
 <?php include 'header.php'; ?>
 <?php include 'sidebar.php'; ?>
 
+<?php
+// Debug section to display database connection status
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
+// Include database connection and timeline functions early
+require_once 'includes/timeline_functions.php';
+
+// Get timeline events for ILOVEYOU virus with error reporting
+try {
+    $events = getTimelineEvents('iloveyou');
+    if (empty($events)) {
+        echo '<div class="alert alert-warning" style="margin: 10px;">Timeline data not found. Using hardcoded fallback.</div>';
+    } else {
+        echo '<div class="alert alert-success" style="margin: 10px;">Timeline data loaded successfully: ' . count($events) . ' events found.</div>';
+    }
+} catch (Exception $e) {
+    echo '<div class="alert alert-danger" style="margin: 10px;">Database Error: ' . $e->getMessage() . '</div>';
+}
+?>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ILOVEYOU Virus</title>
-    <link rel="stylesheet" href="css/iloveyou_history.css">
+    <!-- Font Awesome CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="css/history-page.css">
+    <link rel="stylesheet" href="css/iloveyou_history.css">
+    <link rel="stylesheet" href="css/history-layout-fix.css">
+    <link rel="stylesheet" href="css/timeline.css">
 </head>
 
-<section class="history-details">
+<section class="history-details content-container">
 
     <h1 class="heading">ILOVEYOU Virus (2000)</h1>
 
@@ -54,76 +79,33 @@
 
     </div>
     
-    <?php
-    // Include database connection and timeline functions
-    require_once 'includes/timeline_functions.php';
-    
-    // Get timeline events for ILOVEYOU virus
-    $events = getTimelineEvents('iloveyou');
-    ?>
-    
     <div class="timeline-section">
         <h2 class="section-title">Timeline of the Attack</h2>
         
         <div class="timeline-container">
             <!-- Timeline Line with Points -->
             <div class="timeline-line">
-                <?php
-                // Add hard-coded timeline points if database retrieval fails
-                if (empty($events)) {
-                    $hardcodedEvents = [
-                        ['title' => 'Initial Infection', 'icon_class' => 'fa-virus'],
-                        ['title' => 'Rapid Propagation', 'icon_class' => 'fa-share-alt'],
-                        ['title' => 'Global Disruption', 'icon_class' => 'fa-globe'],
-                        ['title' => 'Containment Efforts', 'icon_class' => 'fa-shield-alt'],
-                        ['title' => 'Aftermath', 'icon_class' => 'fa-chart-line']
-                    ];
-                    foreach ($hardcodedEvents as $index => $event):
-                ?>
-                <div class="timeline-point" data-index="<?php echo $index; ?>" aria-label="<?php echo htmlspecialchars($event['title']); ?>">
-                    <i class="fas <?php echo htmlspecialchars($event['icon_class']); ?>"></i>
+                <div class="timeline-point" data-index="0" aria-label="Initial Infection - May 4, 2000">
+                    <i class="fas fa-virus" aria-hidden="true"></i>
                 </div>
-                <?php 
-                    endforeach;
-                } else {
-                    foreach ($events as $index => $event): 
-                ?>
-                <div class="timeline-point" data-index="<?php echo $index; ?>" aria-label="<?php echo htmlspecialchars($event['title']); ?>">
-                    <i class="fas <?php echo htmlspecialchars($event['icon_class']); ?>"></i>
+                <div class="timeline-point" data-index="1" aria-label="Rapid Propagation - Hours Later">
+                    <i class="fas fa-share-nodes" aria-hidden="true"></i>
                 </div>
-                <?php 
-                    endforeach;
-                }
-                ?>
+                <div class="timeline-point" data-index="2" aria-label="Global Disruption - Same Day">
+                    <i class="fas fa-globe" aria-hidden="true"></i>
+                </div>
+                <div class="timeline-point" data-index="3" aria-label="Containment Efforts - Days Later">
+                    <i class="fas fa-shield-halved" aria-hidden="true"></i>
+                </div>
+                <div class="timeline-point" data-index="4" aria-label="Aftermath - Weeks Later">
+                    <i class="fas fa-chart-line" aria-hidden="true"></i>
+                </div>
             </div>
             
             <!-- Timeline Event Cards -->
             <?php
-            // Add hard-coded event cards if database retrieval fails
-            if (empty($events)) {
-                $hardcodedEventDetails = [
-                    ['year' => '2000', 'title' => 'Initial Infection - May 4, 2000', 
-                     'description' => 'The ILOVEYOU worm arrives via email with the subject "ILOVEYOU" and a malicious attachment. Opening the attachment begins the infection process. The virus was first detected in the Philippines.'],
-                    ['year' => '2000', 'title' => 'Rapid Propagation - Hours Later', 
-                     'description' => 'Within hours, the worm replicates and sends copies of itself to all Outlook contacts, spreading exponentially across the world.'],
-                    ['year' => '2000', 'title' => 'Global Disruption - Same Day', 
-                     'description' => 'Email servers are overwhelmed globally due to the massive volume of infected messages, causing widespread communication disruptions.'],
-                    ['year' => '2000', 'title' => 'Containment Efforts - Days Later', 
-                     'description' => 'Efforts to contain the worm include shutting down mail servers and urging users not to open suspicious attachments.'],
-                    ['year' => '2000', 'title' => 'Aftermath - Weeks Later', 
-                     'description' => 'The total economic impact of the ILOVEYOU worm is assessed, with estimates reaching between $5-10 billion in damages. It infected an estimated 10% of all internet-connected computers worldwide, making it one of the most destructive viruses in history.']
-                ];
-                foreach ($hardcodedEventDetails as $index => $event):
-            ?>
-            <div class="timeline-event-card" data-index="<?php echo $index; ?>">
-                <h2><?php echo htmlspecialchars($event['year']); ?></h2>
-                <h3><?php echo htmlspecialchars($event['title']); ?></h3>
-                <p><?php echo htmlspecialchars($event['description']); ?></p>
-            </div>
-            <?php 
-                endforeach;
-            } else {
-                foreach ($events as $index => $event): 
+            // Only use database events for timeline cards
+            foreach ($events as $index => $event): 
             ?>
             <div class="timeline-event-card" data-index="<?php echo $index; ?>">
                 <h2><?php echo htmlspecialchars($event['year']); ?></h2>
@@ -131,14 +113,13 @@
                 <p><?php echo htmlspecialchars($event['description']); ?></p>
             </div>
             <?php
-                endforeach;
-            }
+            endforeach;
             ?>
         </div>
     </div>
 </section>
 
 <script src="script.js"></script>
-<script src="timeline_debug.js"></script>
+<script src="js/timeline.js"></script>
 
 <?php include 'footer.php'; ?>

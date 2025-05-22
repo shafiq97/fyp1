@@ -1,0 +1,143 @@
+/* Global font settings to fix Bootstrap default font sizes */
+
+:root {
+    /* Define font size variables for easy maintenance */
+    --font-size-base: 16px;
+    --font-size-sm: 14px;
+    --font-size-lg: 18px;
+    --font-size-xl: 20px;
+    --font-size-xxl: 24px;
+    --font-size-heading-1: 2.5rem;
+    --font-size-heading-2: 2rem;
+    --font-size-heading-3: 1.75rem;
+    --font-size-heading-4: 1.5rem;
+    --font-size-heading-5: 1.25rem;
+    --font-size-heading-6: 1rem;
+    --cursor-scale: 1.2; /* Scale factor for cursor size */
+}
+
+/* Base global font settings */
+html {
+    font-size: var(--font-size-base);
+    cursor: default;
+}
+
+body {
+    font-size: var(--font-size-base);
+    line-height: 1.5;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+/* Headings */
+h1, .h1 {
+    font-size: var(--font-size-heading-1);
+}
+
+h2, .h2 {
+    font-size: var(--font-size-heading-2);
+}
+
+h3, .h3 {
+    font-size: var(--font-size-heading-3);
+}
+
+h4, .h4 {
+    font-size: var(--font-size-heading-4);
+}
+
+h5, .h5 {
+    font-size: var(--font-size-heading-5);
+}
+
+h6, .h6 {
+    font-size: var(--font-size-heading-6);
+}
+
+/* Text elements */
+p, li, td, th, button, input, select, textarea {
+    font-size: var(--font-size-base);
+}
+
+/* Links */
+a {
+    font-size: var(--font-size-base);
+}
+
+/* Buttons */
+.btn {
+    font-size: var(--font-size-base);
+}
+
+/* Form elements */
+.form-control {
+    font-size: var(--font-size-base);
+}
+
+/* Navigation */
+.nav-link, .navbar-brand {
+    font-size: var(--font-size-base);
+}
+
+/* Make sure sidebar links are large enough */
+.side-bar .nav-link {
+    font-size: var(--font-size-base);
+}
+
+/* Small screens */
+@media (max-width: 768px) {
+    :root {
+        --font-size-base: 15px;
+        --font-size-heading-1: 2.2rem;
+        --font-size-heading-2: 1.8rem;
+        --font-size-heading-3: 1.5rem;
+    }
+}
+
+/* Custom cursor styles */
+* {
+    cursor: default;
+}
+
+/* Text selection cursor for text elements */
+input, textarea, [contenteditable="true"], p, span, h1, h2, h3, h4, h5, h6, a, button, .btn, li, td, th {
+    cursor: text;
+}
+
+/* Pointer cursor for clickable elements */
+a, button, .btn, select, input[type="checkbox"], input[type="radio"], 
+input[type="submit"], input[type="button"], input[type="reset"],
+.clickable, .nav-link, .navbar-toggler, .dropdown-toggle, .card-header, .accordion-button {
+    cursor: pointer !important;
+}
+
+/* Specific cursor for resizable elements */
+.resizable, textarea {
+    cursor: auto;
+}
+
+/* Zoom-in cursor for zoomable elements */
+.zoomable, img[data-action="zoom"] {
+    cursor: zoom-in;
+}
+
+/* Help cursor for elements with help tooltips */
+[data-toggle="tooltip"], [data-bs-toggle="tooltip"] {
+    cursor: help;
+}
+
+/* CSS to make mouse cursor larger overall (experimental) */
+@supports (cursor: zoom-in) {
+    html {
+        cursor: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'><circle cx='12' cy='12' r='8' fill='white' stroke='black' stroke-width='2'/></svg>") 12 12, auto;
+    }
+    
+    input, textarea, p, span, h1, h2, h3, h4, h5, h6, a, li, td, th {
+        cursor: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'><path d='M13 6v12l8-6z' fill='black'/></svg>") 12 12, text;
+    }
+    
+    a, button, .btn, select, input[type="checkbox"], input[type="radio"], 
+    input[type="submit"], input[type="button"], input[type="reset"],
+    .clickable, .nav-link, .navbar-toggler, .dropdown-toggle {
+        cursor: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'><path d='M7 10l5 5 5-5z' fill='black'/><circle cx='12' cy='12' r='8' fill='transparent' stroke='black' stroke-width='2'/></svg>") 12 12, pointer !important;
+    }
+}

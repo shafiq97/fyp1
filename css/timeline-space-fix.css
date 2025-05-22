@@ -1,0 +1,84 @@
+/**
+ * Timeline Spacing Fix
+ * Additional fix for timeline spacing to prevent edge overlap
+ */
+
+/* Container wrapper with extra padding */
+.timeline-section {
+  padding: 20px 80px !important;
+  box-sizing: border-box !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  overflow: visible !important;
+}
+
+/* Reset all margins and paddings */
+.timeline-container, .timeline-line, .timeline-point {
+  box-sizing: border-box !important;
+}
+
+/* Line styling */
+.timeline-line {
+  width: 100% !important;
+  max-width: 100% !important; 
+  margin: 60px 0 !important;
+  height: 6px !important;
+  background-color: #3498db !important;
+  position: relative !important;
+}
+
+/* Fix for timeline points */
+.timeline-line .timeline-point {
+  box-shadow: 0 0 15px rgba(0,0,0,0.15) !important;
+  width: 70px !important;
+  height: 70px !important;
+}
+
+/* Fix point positions */
+.timeline-line .timeline-point[data-index="0"] { 
+  left: 0% !important; 
+  transform: translate(0, -50%) !important;
+  margin-left: 0 !important;
+}
+
+.timeline-line .timeline-point[data-index="4"] { 
+  left: 100% !important; 
+  transform: translate(-100%, -50%) !important;
+  margin-right: 0 !important;
+}
+
+/* Force icon size and visibility */
+.timeline-point i {
+  font-size: 2.2em !important;
+  display: inline-block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/* Make sure event cards display properly */
+.timeline-event-card {
+  margin: 30px auto !important;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.1) !important;
+}
+
+/* Remove any spacing that could cause overlap */
+@media (max-width: 992px) {
+  .timeline-section {
+    padding: 20px 40px !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .timeline-section {
+    padding: 20px 20px !important;
+  }
+  
+  .timeline-line .timeline-point {
+    width: 60px !important;
+    height: 60px !important;
+  }
+  
+  .timeline-point i {
+    font-size: 1.8em !important;
+  }
+}

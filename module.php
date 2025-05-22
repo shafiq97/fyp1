@@ -7,6 +7,11 @@ include 'header.php';
 
 <!-- Add the module CSS -->
 <link rel="stylesheet" href="css/module.css">
+<link rel="stylesheet" href="css/module-container-expand.css">
+<link rel="stylesheet" href="css/module-cards-expand.css">
+<link rel="stylesheet" href="css/sidebar-module-fix.css">
+<link rel="stylesheet" href="css/module-grid-fix.css">
+<link rel="stylesheet" href="css/sidebar-spacing-fix.css">
 
 <!-- Module content section with Bootstrap -->
 <div class="container content-container mx-auto">

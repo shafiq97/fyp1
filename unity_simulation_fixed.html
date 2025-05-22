@@ -30,9 +30,49 @@
             left: 50%;
             top: 50%;
             transform: translate(-50%, -50%);
+            width: 80%;
+            max-width: 400px;
+        }
+        #unity-logo {
+            display: block;
+            width: 150px;
+            height: 150px;
+            background: url('VIRUS%20SIMULATION/TemplateData/logo.png') no-repeat center center;
+            background-size: contain;
+            margin: 0 auto 20px;
+        }
+        #unity-progress-bar-empty {
+            width: 100%;
+            height: 20px;
+            margin-top: 10px;
+            background-color: #333;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        #unity-progress-bar-full {
+            width: 0%;
+            height: 100%;
+            background-color: #4CAF50; /* Green progress bar */
+            border-radius: 10px;
+            transition: width 0.3s ease;
+        }
+        #unity-progress-text {
+            color: white;
+            text-align: center;
+            margin-top: 10px;
+            font-family: Arial, sans-serif;
         }
         #unity-footer {
             display: none; /* Hide the footer for a cleaner look in the iframe */
+        }
+        #unity-warning {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+            max-width: 800px;
+            z-index: 100;
         }
     </style>
 </head>
@@ -44,6 +84,7 @@
             <div id="unity-progress-bar-empty">
                 <div id="unity-progress-bar-full"></div>
             </div>
+            <div id="unity-progress-text">Loading Virus Simulation... 0%</div>
         </div>
         <div id="unity-warning"></div>
         <div id="unity-footer">
@@ -54,6 +95,84 @@
     </div>
     
     <script>
+        // Check browser capability for WebGL before loading Unity
+        function detectWebGLContext() {
+            const canvas = document.createElement('canvas');
+            const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+            
+            // If WebGL is not supported at all, notify the parent
+            if (!gl) {
+                try {
+                    window.parent.postMessage({ type: 'webgl-not-supported' }, '*');
+                } catch (e) {
+                    // Ignore cross-origin errors
+                }
+                return false;
+            }
+            
+            // Check for potential limited WebGL capabilities
+            const debugInfo = gl.getExtension('WEBGL_debug_renderer_info');
+            if (debugInfo) {
+                const renderer = gl.getParameter(debugInfo.UNMASKED_RENDERER_WEBGL);
+                const vendor = gl.getParameter(debugInfo.UNMASKED_VENDOR_WEBGL);
+                
+                // Check for software renderers which may indicate limited support
+                if (renderer.includes('SwiftShader') || renderer.includes('Software') || renderer.includes('Intel') || vendor.includes('Google')) {
+                    try {
+                        window.parent.postMessage({ type: 'webgl-limited-support', details: renderer }, '*');
+                    } catch (e) {
+                        // Ignore cross-origin errors
+                    }
+                }
+            }
+            
+            return true;
+        }
+        
+        // Run the detection
+        detectWebGLContext();
+        
+        // Suppress WebGL warnings
+        console.originalWarn = console.warn;
+        console.warn = function() {
+            // Filter out the specific WebGL warning
+            if (arguments[0] && 
+                typeof arguments[0] === 'string' && 
+                arguments[0].includes('WebGL') && 
+                arguments[0].includes('getInternalformatParameter')) {
+                
+                // Notify the parent page about the WebGL warning
+                try {
+                    window.parent.postMessage({ type: 'webgl-error' }, '*');
+                } catch (e) {
+                    // Ignore cross-origin errors
+                }
+                
+                return; // Don't output this specific warning
+            }
+            // Pass other warnings through
+            console.originalWarn.apply(console, arguments);
+        };
+        
+        // Handle AudioContext warnings
+        console.originalError = console.error;
+        console.error = function() {
+            // Check for AudioContext errors
+            if (arguments[0] && 
+                typeof arguments[0] === 'string' && 
+                (arguments[0].includes('AudioContext') || arguments[0].includes('audio') || arguments[0].includes('Audio'))) {
+                
+                // Notify the parent page about the AudioContext error
+                try {
+                    window.parent.postMessage({ type: 'audio-context-error' }, '*');
+                } catch (e) {
+                    // Ignore cross-origin errors
+                }
+            }
+            // Pass all errors through
+            console.originalError.apply(console, arguments);
+        };
+        
         var container = document.querySelector("#unity-container");
         var canvas = document.querySelector("#unity-canvas");
         var loadingBar = document.querySelector("#unity-loading-bar");
@@ -102,10 +221,62 @@
         var script = document.createElement("script");
         script.src = loaderUrl;
         script.onload = () => {
+            // Set WebGL context attributes to improve compatibility
+            canvas.addEventListener("webglcontextcreationerror", function(event) {
+                console.error("WebGL context creation error:", event.statusMessage);
+                unityShowBanner("WebGL context creation error: " + event.statusMessage, "error");
+            });
+            
+            // Add fallback for WebGL errors
+            canvas.addEventListener("webglcontextlost", function(event) {
+                event.preventDefault();
+                unityShowBanner("WebGL context lost. Attempting to restore...", "warning");
+                setTimeout(function() {
+                    window.location.reload();
+                }, 3000);
+            });
+            
+            // Create a variable to store the Unity instance
+            let unityInstanceGlobal = null;
+            
+            // Function to resume AudioContext after user interaction
+            function resumeAudioContext() {
+                if (unityInstanceGlobal) {
+                    try {
+                        // Try to access and resume AudioContext
+                        const audioContext = unityInstanceGlobal.Module.WebGLAudioContext;
+                        if (audioContext && audioContext.state === 'suspended') {
+                            audioContext.resume();
+                        }
+                    } catch (e) {
+                        console.log('Could not resume AudioContext', e);
+                    }
+                }
+            }
+            
+            // Add user interaction listeners to resume audio
+            document.addEventListener('click', resumeAudioContext);
+            document.addEventListener('keydown', resumeAudioContext);
+            document.addEventListener('touchstart', resumeAudioContext);
+            
+            // Listen for messages from the parent page
+            window.addEventListener('message', function(event) {
+                if (event.data && event.data.type === 'resume-audio') {
+                    resumeAudioContext();
+                }
+            });
+            
             createUnityInstance(canvas, config, (progress) => {
                 progressBarFull.style.width = 100 * progress + "%";
+                document.getElementById("unity-progress-text").innerText = `Loading Virus Simulation... ${Math.round(progress * 100)}%`;
             }).then((unityInstance) => {
                 loadingBar.style.display = "none";
+                window.unityInstance = unityInstance; // Make available globally
+                unityInstanceGlobal = unityInstance; // Store for audio handling
+                
+                // Try to resume audio after Unity loads
+                resumeAudioContext();
+                
                 if (fullscreenButton) {
                     fullscreenButton.onclick = () => {
                         unityInstance.SetFullscreen(1);

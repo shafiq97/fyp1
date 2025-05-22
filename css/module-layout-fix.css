@@ -1,0 +1,84 @@
+/* CSS fixes for all module pages (virus, worm, trojan) to ensure proper centering with sidebar */
+
+/* Make the module section work with content container padding */
+.module-details-section {
+    width: 100% !important;
+    max-width: 100% !important; 
+    margin-left: auto !important;
+    margin-right: auto !important;
+    box-sizing: border-box !important;
+}
+
+/* Inner content should have max width to look good */
+.module-content {
+    max-width: 1000px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+/* Ensure the heading is also centered properly */
+.module-title {
+    max-width: 1000px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    font-size: var(--font-size-heading-1, 2.5rem) !important;
+}
+
+/* Module text enhancements */
+.module-paragraph {
+    font-size: var(--font-size-lg, 18px) !important;
+    line-height: 1.6 !important;
+}
+
+.module-list li {
+    font-size: var(--font-size-lg, 18px) !important;
+    line-height: 1.6 !important;
+    margin-bottom: 10px !important;
+}
+
+.subsection-title {
+    font-size: var(--font-size-heading-2, 2rem) !important;
+}
+
+/* When sidebar is visible on desktop */
+@media (min-width: 992px) {
+    .dashboard-page:not(.active) .module-details-section {
+        padding-left: 0 !important; /* Remove extra padding */
+    }
+    
+    /* Apply proper padding when sidebar is visible */
+    .dashboard-page:not(.active) .content-container.module-details-section {
+        padding-left: 280px !important; /* Account for sidebar width */
+    }
+    
+    /* Reset padding when sidebar is hidden */
+    .dashboard-page.active .content-container.module-details-section {
+        padding-left: 20px !important;
+    }
+}
+
+/* Ensure module is properly centered at all screen sizes */
+@media (max-width: 768px) {
+    .module-details-section {
+        width: 100% !important;
+        padding: 1.5rem !important;
+    }
+    
+    .module-title {
+        font-size: 2rem !important;
+    }
+    
+    .subsection-title {
+        font-size: 1.5rem !important;
+    }
+}
+
+@media (max-width: 576px) {
+    .module-details-section {
+        padding: 1rem !important;
+    }
+    
+    .module-title {
+        font-size: 1.75rem !important;
+    }
+}

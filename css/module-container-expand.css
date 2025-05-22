@@ -1,0 +1,90 @@
+/* CSS to make the module content container bigger */
+
+/* Expand the overall module container width */
+.module-details-section {
+    width: 95% !important;
+    max-width: 1400px !important; /* Increased from 1000px */
+    margin-left: auto !important;
+    margin-right: auto !important;
+    padding: 2.5rem !important; /* Slightly increased padding */
+    box-sizing: border-box !important; /* Ensure padding is included in width calculation */
+}
+
+/* Expand the inner content max-width */
+.module-content {
+    max-width: 1300px !important; /* Increased from 1000px */
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+/* Adjust the title to match new container width */
+.module-title {
+    max-width: 1300px !important; /* Increased from 1000px */
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+/* Make grid items larger on bigger screens */
+.module-grid {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)) !important; /* Increased min size from 250px */
+    gap: 2rem !important; /* Increased from 1.5rem */
+}
+
+/* Increase card padding for better content display */
+.module-card {
+    padding: 2rem !important; /* Increased from 1.5rem */
+}
+
+/* Adjust content container on module pages */
+body.module-page .content-container {
+    max-width: 1500px !important; /* Increased from 1200px */
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+}
+
+/* Media queries for responsive behavior */
+@media (min-width: 1600px) {
+    .module-details-section {
+        max-width: 1600px !important;
+    }
+    
+    .module-content,
+    .module-title {
+        max-width: 1500px !important;
+    }
+    
+    body.module-page .content-container {
+        max-width: 1700px !important;
+    }
+}
+
+/* Ensure proper sidebar integration on desktop */
+@media (min-width: 992px) {
+    /* When sidebar is visible, ensure content doesn't overlap */
+    .dashboard-page:not(.active) .content-container.module-details-section {
+        width: calc(100% - 280px) !important; /* Subtract sidebar width */
+        margin-left: 280px !important; /* Push content to the right of sidebar */
+        padding-left: 20px !important; /* Add padding for spacing */
+        max-width: none !important; /* Allow full width minus sidebar */
+        box-sizing: border-box !important; /* Include padding in width */
+    }
+}
+
+/* Tablet adjustments */
+@media (max-width: 992px) {
+    .module-details-section {
+        width: 100% !important;
+        padding: 2rem !important;
+    }
+}
+
+/* Mobile adjustments */
+@media (max-width: 576px) {
+    .module-details-section {
+        padding: 1.5rem !important;
+    }
+    
+    .module-grid {
+        grid-template-columns: 1fr !important; /* Single column on very small screens */
+    }
+}

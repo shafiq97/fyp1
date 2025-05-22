@@ -1,0 +1,48 @@
+/* 
+ * Additional CSS to fix sidebar and header overlap issues
+ */
+
+/* Ensure proper spacing between header and sidebar */
+.side-bar {
+    margin-top: 4px !important; /* Add small gap between header and sidebar */
+}
+
+/* Ensure sidebar content doesn't get hidden behind header */
+.sidebar-content {
+    padding-top: 10px !important;
+}
+
+/* Ensure sidebar links have proper font size */
+.side-bar .nav-link {
+    font-size: var(--font-size-base, 16px) !important;
+    padding: 10px 15px !important;
+}
+
+/* Ensure the logo is visible on all screens */
+.header .navbar-brand {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    position: relative !important;
+    z-index: 1300 !important; /* Higher than everything */
+}
+
+/* Extra protection for the logo image */
+.header .navbar-brand img {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+/* On desktop, ensure content is properly padded for sidebar */
+@media (min-width: 992px) {
+    .dashboard-page .content-container {
+        margin-left: auto !important;
+        margin-right: auto !important;
+        padding-left: 280px !important; /* Account for sidebar width */
+    }
+    
+    .dashboard-page.active .content-container {
+        padding-left: 20px !important; /* Reset when sidebar is hidden */
+    }
+}

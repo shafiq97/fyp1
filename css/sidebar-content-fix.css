@@ -1,0 +1,106 @@
+/* Sidebar and content layout fixes */
+
+/* Base layout for history pages */
+.history-details,
+.module-page .box-container,
+.simulation-page .content-section {
+    width: 90%;
+    max-width: 1200px;
+    margin: 2rem auto;
+    transition: all 0.3s ease;
+}
+
+/* Sidebar spacing and overlap prevention */
+.dashboard-page .side-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 30rem;
+    background-color: var(--primary-color);
+    border-right: var(--border);
+    z-index: 1200;
+    transition: left 0.3s ease;
+}
+
+/* Content positioning with sidebar */
+.dashboard-page:not(.active) .content-section,
+.dashboard-page:not(.active) .module-page,
+.dashboard-page:not(.active) .simulation-page,
+.dashboard-page:not(.active) .history-details {
+    margin-left: 32rem; /* Account for sidebar width (30rem) + spacing (2rem) */
+    width: calc(90% - 32rem); /* Adjust width to account for sidebar */
+    transition: all 0.3s ease;
+}
+
+/* Content positioning without sidebar */
+.dashboard-page.active .content-section,
+.dashboard-page.active .module-page,
+.dashboard-page.active .simulation-page,
+.dashboard-page.active .history-details {
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
+}
+
+/* Timeline container adjustments */
+.timeline-container {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+    padding: 30px 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+    /* Default sidebar position (hidden) */
+    .dashboard-page .side-bar {
+        left: -31rem;
+    }
+
+    /* Content position when sidebar is hidden */
+    .dashboard-page:not(.active) .content-section,
+    .dashboard-page:not(.active) .module-page,
+    .dashboard-page:not(.active) .simulation-page,
+    .dashboard-page:not(.active) .history-details,
+    .dashboard-page.active .content-section,
+    .dashboard-page.active .module-page,
+    .dashboard-page.active .simulation-page,
+    .dashboard-page.active .history-details {
+        margin-left: auto;
+        margin-right: auto;
+        width: 90%;
+        padding: 1rem;
+    }
+
+    /* Show sidebar when active */
+    .dashboard-page .side-bar.active {
+        left: 0;
+        box-shadow: 0 0 0 100vw rgba(0, 0, 0, 0.5);
+    }
+
+    /* Timeline container mobile adjustments */
+    .timeline-container {
+        padding: 20px 10px;
+    }
+}
+
+@media (max-width: 768px) {
+    /* Smaller margins on mobile */
+    .history-details,
+    .module-page .box-container,
+    .simulation-page .content-section {
+        width: 95%;
+        margin: 1rem auto;
+    }
+}
+
+/* Ensure content doesn't overlap with header and footer */
+.content-section,
+.module-page,
+.simulation-page,
+.history-details {
+    margin-top: 7rem; /* Space for header */
+    margin-bottom: 7rem; /* Space for footer */
+    min-height: calc(100vh - 14rem); /* Full height minus header and footer */
+}
