@@ -1,0 +1,46 @@
+/* Force header navigation to be visible when sidebar is hidden */
+@media (max-width: 991.98px) {
+    /* Ensure navigation items are visible */
+    .navbar-collapse {
+        display: block !important;
+    }
+    
+    /* Adjust navigation items when sidebar is hidden */
+    .side-bar:not(.active) + .flex-grow-1 .navbar-nav {
+        display: flex !important;
+        flex-direction: row;
+        margin-top: 0;
+    }
+    
+    /* Ensure toggle button works properly */
+    #menu-btn {
+        display: block !important;
+        z-index: 1600;
+        position: relative;
+    }
+    
+    /* Layout fixes for navbar items */
+    .navbar-nav {
+        flex-direction: row !important;
+    }
+    
+    .navbar-nav .nav-item {
+        margin-left: 10px;
+    }
+}
+
+/* Make sure navbar is visible at all times */
+.header .navbar-collapse {
+    display: flex !important;
+}
+
+/* Ensure navbar has proper z-index */
+.header {
+    z-index: 1400 !important;
+    position: relative;
+}
+
+/* Make sure the sidebar toggle button is always visible */
+.navbar-toggler {
+    display: block !important;
+}

@@ -1,0 +1,76 @@
+/* Mobile navigation fix - critical priority */
+@media (max-width: 991.98px) {
+  /* Force mobile navigation to be visible */
+  .navbar-collapse {
+    display: flex !important;
+    flex-basis: auto;
+    justify-content: flex-end;
+  }
+
+  /* Fix navigation link display */
+  .navbar-nav {
+    display: flex !important;
+    flex-direction: row !important;
+  }
+
+  /* Make sure the sidebar properly hides when inactive */
+  .side-bar {
+    width: 250px;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: -280px;
+    transition: left 0.3s ease;
+    z-index: 9999;
+    overflow-y: auto;
+    background-color: #234;
+  }
+
+  /* Ensure sidebar is visible when active */
+  .side-bar.active {
+    left: 0;
+    box-shadow: none; /* Removed the shadow */
+  }
+
+  /* Prevent content from shifting when sidebar is toggled */
+  .content-container {
+    margin-left: 0 !important;
+    width: 100% !important;
+  }
+
+  /* Make navigation items more visible */
+  .navbar-nav .nav-item {
+    margin-left: 10px;
+    background-color: rgba(0,0,0,0.05);
+    border-radius: 5px;
+  }
+
+  /* Ensure the toggle button is visible and working */
+  #menu-btn {
+    display: block !important;
+    z-index: 10000;
+    background-color: #f8f9fa;
+    padding: 8px;
+  }
+
+  /* REMOVED backdrop when sidebar is active */
+  body::after {
+    display: none !important;
+    content: none !important;
+    background: none !important;
+    position: static !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    z-index: -9999 !important;
+  }
+
+  body.active::after {
+    display: none !important;
+    content: none !important;
+    background: none !important;
+    position: static !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    z-index: -9999 !important;
+  }
+}

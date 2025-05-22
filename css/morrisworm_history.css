@@ -1,392 +1,415 @@
 @import url("dashboard.css");
 
-    .history-details {
-        width: 80%;
-        margin: 2rem auto;
-        background-color: var(--white-color);
-        padding: 2rem;
-        border-radius: 0.5rem;
-        box-shadow: 0 0.2rem 0.5rem rgba(0, 0, 0, 0.1);
-    }
+.history-details {
+    width: 80%;
+    margin: 2rem auto;
+    background-color: var(--white-color);
+    padding: 2rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 0.2rem 0.5rem rgba(0, 0, 0, 0.1);
+}
 
-    .history-details .heading {
-        font-size: 2.5rem;
-        color: var(--primary-color);
-        margin-bottom: 1.5rem;
-        border-bottom: 0.1rem solid var(--secondary-color);
-        padding-bottom: 1rem;
-    }
+.history-details .heading {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+    border-bottom: 0.1rem solid var(--secondary-color);
+    padding-bottom: 1rem;
+}
 
-    .history-details .detail-content {
-        margin-top: 2rem;
-    }
+.history-details .detail-content {
+    margin-top: 2rem;
+}
 
-    .history-details .detail-section {
-        margin-bottom: 2rem;
-    }
+.history-details .detail-section {
+    margin-bottom: 2rem;
+}
 
-    .history-details .detail-section h2 {
-        font-size: 2rem;
-        color: var(--primary-color);
-        margin-bottom: 1rem;
-    }
+.history-details .detail-section h2 {
+    font-size: 2rem;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+.history-details .detail-section p,
+.history-details .detail-section ul {
+    font-size: 1.1rem;
+    color: var(--dark-color);
+    line-height: 1.6;
+}
 
-    .history-details .detail-section p,
-    .history-details .detail-section ul {
-        font-size: 1.1rem;
-        color: var(--dark-color);
-        line-height: 1.6;
-    }    .history-details .detail-section ul {
-        list-style-type: disc;
-        margin-left: 2rem;
-    }
-    
-    /* Timeline Component CSS */
-    .timeline-section {
-        margin-top: 3rem;
-        padding-top: 1.5rem;
-        border-top: 0.1rem solid #eee;
-    }
-    
-    .section-title {
-        font-size: 2rem;
-        color: var(--primary-color);
-        margin-bottom: 2rem;
-    }
-    
-    .timeline-container {
-        width: 100%;
-        position: relative;
-        padding: 30px 0;
-    }
-      /* Timeline Line */    .timeline-line {
-        position: relative;
-        width: 100%;
-        height: 5px;
-        background-color: #e0e0e0;
-        margin: 40px 0 60px 0;
-        overflow: visible;
-        --progress-width: 0%;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-    }
-    
-    /* Fallback for browsers that don't support :has() */
-    .timeline-line::after {
-        content: '';
-        position: absolute;
-        left: 0;
-        top: 0;
-        height: 100%;
-        width: var(--progress-width, 0%);
-        background: linear-gradient(to right, #5090C1, #E25046);
-        transition: width 0.5s ease;
-        z-index: 1;
-    }
-      /* Timeline progress effect */
-    .timeline-line::before {
-        content: '';
-        position: absolute;
-        left: 0;
-        top: 0;
-        height: 100%;
-        width: 0;
-        background: linear-gradient(to right, #5090C1, #E25046);
-        transition: width 0.5s ease;
-        z-index: 1;
-    }
-    
-    /* Progress indicator based on active point */
-    .timeline-point[data-index="0"].active ~ .timeline-point[data-index="1"],
-    .timeline-point[data-index="0"].active ~ .timeline-point[data-index="2"],
-    .timeline-point[data-index="0"].active ~ .timeline-point[data-index="3"],
-    .timeline-point[data-index="0"].active ~ .timeline-point[data-index="4"] {
-        background-color: #e0e0e0;
-    }
-    
-    .timeline-point[data-index="1"].active ~ .timeline-point[data-index="2"],
-    .timeline-point[data-index="1"].active ~ .timeline-point[data-index="3"],
-    .timeline-point[data-index="1"].active ~ .timeline-point[data-index="4"] {
-        background-color: #e0e0e0;
-    }
-    
-    .timeline-point[data-index="2"].active ~ .timeline-point[data-index="3"],
-    .timeline-point[data-index="2"].active ~ .timeline-point[data-index="4"] {
-        background-color: #e0e0e0;
-    }
-    
-    .timeline-point[data-index="3"].active ~ .timeline-point[data-index="4"] {
-        background-color: #e0e0e0;
-    }
-    
-    /* Control the progress bar width */
-    .timeline-container:has(.timeline-point[data-index="0"].active) .timeline-line::before {
-        width: 0%;
-    }
-    
-    .timeline-container:has(.timeline-point[data-index="1"].active) .timeline-line::before {
-        width: 25%;
-    }
-    
-    .timeline-container:has(.timeline-point[data-index="2"].active) .timeline-line::before {
-        width: 50%;
-    }
-    
-    .timeline-container:has(.timeline-point[data-index="3"].active) .timeline-line::before {
-        width: 75%;
-    }
-    
-    .timeline-container:has(.timeline-point[data-index="4"].active) .timeline-line::before {
-        width: 100%;
-    }
-      /* Timeline Points */    .timeline-point {
+.history-details .detail-section ul {
+    list-style-type: disc;
+    margin-left: 2rem;
+}
+
+/* Timeline Component CSS */
+.timeline-section {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 0.1rem solid #eee;
+}
+
+.section-title {
+    font-size: 2rem;
+    color: var(--primary-color);
+    margin-bottom: 2rem;
+}
+
+.timeline-container {
+    width: 100%;
+    position: relative;
+    padding: 30px 0;
+}
+/* Timeline Line */
+.timeline-line {
+    position: relative;
+    width: 100%;
+    height: 5px;
+    background-color: #e0e0e0;
+    margin: 40px 0 60px 0;
+    overflow: visible;
+}
+
+/* Fallback for browsers that don't support :has() */
+.timeline-line::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: var(--progress-width, 0%);
+    background: linear-gradient(to right, #5090C1, #E25046);
+    transition: width 0.5s ease;
+    z-index: 1;
+}
+/* Timeline progress effect */
+.timeline-line::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 0;
+    background: linear-gradient(to right, #5090C1, #E25046);
+    transition: width 0.5s ease;
+    z-index: 1;
+}
+
+/* Progress indicator based on active point */
+.timeline-point[data-index="0"].active ~ .timeline-point[data-index="1"],
+.timeline-point[data-index="0"].active ~ .timeline-point[data-index="2"],
+.timeline-point[data-index="0"].active ~ .timeline-point[data-index="3"],
+.timeline-point[data-index="0"].active ~ .timeline-point[data-index="4"] {
+    background-color: #e0e0e0;
+}
+
+.timeline-point[data-index="1"].active ~ .timeline-point[data-index="2"],
+.timeline-point[data-index="1"].active ~ .timeline-point[data-index="3"],
+.timeline-point[data-index="1"].active ~ .timeline-point[data-index="4"] {
+    background-color: #e0e0e0;
+}
+
+.timeline-point[data-index="2"].active ~ .timeline-point[data-index="3"],
+.timeline-point[data-index="2"].active ~ .timeline-point[data-index="4"] {
+    background-color: #e0e0e0;
+}
+
+.timeline-point[data-index="3"].active ~ .timeline-point[data-index="4"] {
+    background-color: #e0e0e0;
+}
+
+/* Control the progress bar width */
+.timeline-container:has(.timeline-point[data-index="0"].active) .timeline-line::before {
+    width: 0%;
+}
+
+.timeline-container:has(.timeline-point[data-index="1"].active) .timeline-line::before {
+    width: 25%;
+}
+
+.timeline-container:has(.timeline-point[data-index="2"].active) .timeline-line::before {
+    width: 50%;
+}
+
+.timeline-container:has(.timeline-point[data-index="3"].active) .timeline-line::before {
+    width: 75%;
+}
+
+.timeline-container:has(.timeline-point[data-index="4"].active) .timeline-line::before {
+    width: 100%;
+}
+/* Timeline Points */
+.timeline-point {
+    position: absolute;
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    background-color: #5090C1;
-    color: white;
-    font-size: 1.5rem;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
     border: 3px solid #333;
+    z-index: 2;
+    transition: all 0.3s ease;
+    color: white;
+    font-weight: bold;
+    font-size: 1.2rem;
+    text-shadow: 1px 1px 1px rgba(0,0,0,0.3);
 }
-    
-    /* Tooltip for timeline points */
-    .timeline-point::before {
-        content: attr(aria-label);
-        position: absolute;
-        bottom: calc(100% + 10px);
-        left: 50%;
-        transform: translateX(-50%);
-        background-color: rgba(0, 0, 0, 0.8);
-        color: white;
-        padding: 5px 10px;
-        border-radius: 4px;
-        font-size: 0.8rem;
-        white-space: nowrap;
-        opacity: 0;
-        visibility: hidden;
-        transition: opacity 0.3s, visibility 0.3s;
-        pointer-events: none;
-        z-index: 10;
-    }
-    
-    .timeline-point:hover::before {
-        opacity: 1;
-        visibility: visible;
-    }
-    
-    .timeline-point:hover, .timeline-point.active {
-        transform: translateY(-50%) scale(1.1);
-        box-shadow: 0 0 15px rgba(0,0,0,0.2);
-        border-color: #fff;
-    }
-    
-    /* Timeline Points - Different colors */
-    .timeline-point:nth-child(1) {
-        background-color: #5090C1; /* Blue */
-        left: 0%;
-        transform: translateX(-50%) translateY(-50%);
-    }
-    
-    .timeline-point:nth-child(2) {
-        background-color: #44B3B2; /* Teal */
-        left: 25%;
-    }
-    
-    .timeline-point:nth-child(3) {
-        background-color: #FF9642; /* Orange */
-        left: 50%;
-    }
-    
-    .timeline-point:nth-child(4) {
-        background-color: #E7635D; /* Red */
-        left: 75%;
-    }
-    
-    .timeline-point:nth-child(5) {
-        background-color: #E25046; /* Darker Red */
-        left: 100%;
-        transform: translateX(0%) translateY(-50%);
-    }
-      /* Add a glow effect on hover/active */
-    .timeline-point::after {
-        content: '';
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        border-radius: 50%;
-        background: inherit;
-        opacity: 0.3;
-        z-index: -1;
-        transform: scale(0);
-        transition: transform 0.3s ease;
-    }
-    
-    .timeline-point:hover::after,
-    .timeline-point.active::after {
+
+/* Tooltip for timeline points */
+.timeline-point::before {
+    content: attr(aria-label);
+    position: absolute;
+    bottom: calc(100% + 10px);
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s;
+    pointer-events: none;
+    z-index: 10;
+}
+
+.timeline-point:hover::before {
+    opacity: 1;
+    visibility: visible;
+}
+
+.timeline-point:hover, .timeline-point.active {
+    transform: translateY(-50%) scale(1.1);
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    border-color: #fff;
+}
+
+/* Timeline Points - Different colors */
+.timeline-point:nth-child(1) {
+    left: 0%;
+    background-color: #5090C1; /* Blue */
+}
+
+.timeline-point:nth-child(2) {
+    left: 25%;
+    background-color: #44B3B2; /* Teal */
+}
+
+.timeline-point:nth-child(3) {
+    left: 50%;
+    background-color: #FF9642; /* Orange */
+}
+
+.timeline-point:nth-child(4) {
+    left: 75%;
+    background-color: #E7635D; /* Red */
+}
+
+.timeline-point:nth-child(5) {
+    left: 100%;
+    background-color: #E25046; /* Darker Red */
+}
+/* Add a glow effect on hover/active */
+.timeline-point::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: inherit;
+    opacity: 0.3;
+    z-index: -1;
+    transform: scale(0);
+    transition: transform 0.3s ease;
+}
+
+.timeline-point:hover::after,
+.timeline-point.active::after {
+    transform: scale(1.4);
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% {
         transform: scale(1.4);
-        animation: pulse 1.5s infinite;
+        opacity: 0.3;
     }
-    
-    @keyframes pulse {
-        0% {
-            transform: scale(1.4);
-            opacity: 0.3;
-        }
-        50% {
-            transform: scale(1.6);
-            opacity: 0.15;
-        }
-        100% {
-            transform: scale(1.4);
-            opacity: 0.3;
-        }
+    50% {
+        transform: scale(1.6);
+        opacity: 0.15;
     }
-      /* Timeline Event Card */    .timeline-event-card {
-        width: 80%;
-        margin: 30px auto;
-        padding: 25px;
-        border-radius: 8px;
-        background-color: #fff;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        transition: all 0.3s ease;
+    100% {
+        transform: scale(1.4);
+        opacity: 0.3;
+    }
+}
+/* Timeline Event Card */
+.timeline-event-card {
+    width: 80%;
+    margin: 30px auto;
+    padding: 25px;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    opacity: 0;
+    transform: translateY(20px);
+    position: relative;
+    display: none;
+}
+/* Connector from timeline to card - Removed as requested */
+.timeline-event-card::before {
+    display: none; /* Hide the connector line */
+}
+
+.timeline-event-card.active {
+    opacity: 1;
+    transform: translateY(0);
+    display: block;
+    animation: card-fade-in 0.5s ease-out forwards;
+}
+
+@keyframes card-fade-in {
+    0% {
         opacity: 0;
         transform: translateY(20px);
-        position: relative;
-        display: none;
     }
-      /* Connector from timeline to card - Removed as requested */
-    .timeline-event-card::before {
-        display: none; /* Hide the connector line */
-    }
-    
-    .timeline-event-card.active {
+    100% {
         opacity: 1;
         transform: translateY(0);
-        display: block;
-        animation: card-fade-in 0.5s ease-out forwards;
     }
-    
-    @keyframes card-fade-in {
-        0% {
-            opacity: 0;
-            transform: translateY(20px);
-        }
-        100% {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-      .timeline-event-card h2 {
-        font-size: 2.2rem;
-        margin-bottom: 10px;
-        color: var(--primary-color);
-        position: relative;
-        display: inline-block;
-    }
-    
-    /* Add a decorative underline to the year heading */
-    .timeline-event-card h2::after {
-        content: '';
-        position: absolute;
-        bottom: -5px;
-        left: 0;
+}
+.timeline-event-card h2 {
+    font-size: 2.2rem;
+    margin-bottom: 10px;
+    color: var(--primary-color);
+    position: relative;
+    display: inline-block;
+}
+
+/* Add a decorative underline to the year heading */
+.timeline-event-card h2::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 40px;
+    height: 3px;
+    background: var(--secondary-color);
+}
+
+.timeline-event-card h3 {
+    font-size: 1.5rem;
+    margin: 15px 0;
+    font-weight: 600;
+    color: #444;
+}
+
+.timeline-event-card p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #555;
+    margin-bottom: 0;
+}
+
+/* Dark mode support */
+.dark-mode .timeline-line {
+    background-color: #444;
+}
+
+.dark-mode .timeline-event-card {
+    background-color: var(--dark-color);
+}
+
+.dark-mode .timeline-event-card h2 {
+    color: var(--white-color);
+}
+
+.dark-mode .timeline-event-card h3,
+.dark-mode .timeline-event-card p {
+    color: #ccc;
+}
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .timeline-point {
         width: 40px;
-        height: 3px;
-        background: var(--secondary-color);
+        height: 40px;
+        font-size: 1rem;
+    }
+    
+    .timeline-event-card {
+        width: 90%;
+        padding: 20px;
+    }
+    
+    .timeline-event-card h2 {
+        font-size: 1.8rem;
     }
     
     .timeline-event-card h3 {
+        font-size: 1.3rem;
+    }
+    
+    /* Adjust point positions for better mobile display */
+    .timeline-point:nth-child(1) { left: 0%; transform: translateX(-25%) translateY(-50%); }
+    .timeline-point:nth-child(5) { left: 100%; transform: translateX(-75%) translateY(-50%); }
+    
+    /* Hide tooltips on mobile to save space */
+    .timeline-point::before {
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .timeline-line {
+        margin: 30px 0 45px 0;
+    }
+    
+    .timeline-point {
+        width: 35px;
+        height: 35px;
+    }
+    
+    .timeline-event-card {
+        width: 95%;
+        padding: 15px;
+    }
+    
+    .timeline-event-card h2 {
         font-size: 1.5rem;
-        margin: 15px 0;
-        font-weight: 600;
-        color: #444;
+    }
+    
+    .timeline-event-card h3 {
+        font-size: 1.2rem;
     }
     
     .timeline-event-card p {
-        font-size: 1.1rem;
-        line-height: 1.6;
-        color: #555;
-        margin-bottom: 0;
+        font-size: 1rem;
     }
     
-    /* Dark mode support */
-    .dark-mode .timeline-line {
-        background-color: #444;
+    /* Mobile-specific timeline layout adjustments */
+    .section-title {
+        font-size: 1.5rem;
     }
-    
-    .dark-mode .timeline-event-card {
-        background-color: var(--dark-color);
-    }
-    
-    .dark-mode .timeline-event-card h2 {
-        color: var(--white-color);
-    }
-    
-    .dark-mode .timeline-event-card h3,
-    .dark-mode .timeline-event-card p {
-        color: #ccc;
-    }
-      /* Responsive adjustments */
-    @media (max-width: 768px) {
-        .timeline-point {
-            width: 40px;
-            height: 40px;
-            font-size: 1rem;
-        }
-        
-        .timeline-event-card {
-            width: 90%;
-            padding: 20px;
-        }
-        
-        .timeline-event-card h2 {
-            font-size: 1.8rem;
-        }
-        
-        .timeline-event-card h3 {
-            font-size: 1.3rem;
-        }
-        
-        /* Adjust point positions for better mobile display */
-        .timeline-point:nth-child(1) { left: 0%; transform: translateX(-25%) translateY(-50%); }
-        .timeline-point:nth-child(5) { left: 100%; transform: translateX(-75%) translateY(-50%); }
-        
-        /* Hide tooltips on mobile to save space */
-        .timeline-point::before {
-            display: none;
-        }
-    }
-    
-    @media (max-width: 480px) {
-        .timeline-line {
-            margin: 30px 0 45px 0;
-        }
-        
-        .timeline-point {
-            width: 35px;
-            height: 35px;
-        }
-        
-        .timeline-event-card {
-            width: 95%;
-            padding: 15px;
-        }
-        
-        .timeline-event-card h2 {
-            font-size: 1.5rem;
-        }
-        
-        .timeline-event-card h3 {
-            font-size: 1.2rem;
-        }
-        
-        .timeline-event-card p {
-            font-size: 1rem;
-        }
-        
-        /* Mobile-specific timeline layout adjustments */
-        .section-title {
-            font-size: 1.5rem;
-        }
-    }
+}
+
+/* Force timeline icons into a straight horizontal line */
+.timeline-line {
+  position: relative;
+}
+.timeline-line .timeline-point {
+  position: absolute !important;
+  top: 50% !important;
+  transform: translate(-50%, -50%) !important;
+}
+.timeline-line .timeline-point:nth-child(1) { left: 0% !important; }
+.timeline-line .timeline-point:nth-child(2) { left: 25% !important; }
+.timeline-line .timeline-point:nth-child(3) { left: 50% !important; }
+.timeline-line .timeline-point:nth-child(4) { left: 75% !important; }
+.timeline-line .timeline-point:nth-child(5) { left: 100% !important; }

@@ -14,9 +14,7 @@ try {
     $events = getTimelineEvents('zeustrojan');
     if (empty($events)) {
         echo '<div class="alert alert-warning" style="margin: 10px;">Timeline data not found. Using hardcoded fallback.</div>';
-    } else {
-        echo '<div class="alert alert-success" style="margin: 10px;">Timeline data loaded successfully: ' . count($events) . ' events found.</div>';
-    }
+    } 
 } catch (Exception $e) {
     echo '<div class="alert alert-danger" style="margin: 10px;">Database Error: ' . $e->getMessage() . '</div>';
 }
@@ -26,16 +24,15 @@ try {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Zeus Trojan Details</title>
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="css/history-page.css">
     <link rel="stylesheet" href="css/zeustrojan_history.css">
     <link rel="stylesheet" href="css/history-layout-fix.css">
-    <link rel="stylesheet" href="css/timeline-icon-fix.css">
-    <link rel="stylesheet" href="css/timeline_progress_fix.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <link rel="stylesheet" href="css/fa-icons-fix.css"><!-- Added Font Awesome icons fix -->
+    <link rel="stylesheet" href="css/timeline.css">
 </head>
 
-<section class="history-details">
+<section class="history-details content-container">
 
     <h1 class="heading">Zeus Trojan (2007)</h1>
 
@@ -87,25 +84,23 @@ try {
         <h2 class="section-title">Timeline of the Attack</h2>
         
         <div class="timeline-container">
-            <?php
-            // Include database connection and timeline functions
-            require_once 'includes/timeline_functions.php';
-            
-            // Get timeline events for Zeus Trojan
-            $events = getTimelineEvents('zeustrojan');
-            ?>
             <!-- Timeline Line with Points -->
             <div class="timeline-line">
-                <?php
-                // Only use database events, if no events are found, timeline_standardizer.js will handle it
-                foreach ($events as $index => $event): 
-                ?>
-                <div class="timeline-point" data-index="<?php echo $index; ?>" aria-label="<?php echo htmlspecialchars($event['title']); ?>">
-                    <i class="fas <?php echo htmlspecialchars($event['icon_class']); ?>"></i>
+                <div class="timeline-point" data-index="0" aria-label="Initial Discovery - 2007">
+                    <i class="fas fa-binoculars"></i>
                 </div>
-                <?php 
-                endforeach;
-                ?>
+                <div class="timeline-point" data-index="1" aria-label="Major Banking Attacks - 2009">
+                    <i class="fas fa-university"></i>
+                </div>
+                <div class="timeline-point" data-index="2" aria-label="Zeus 2.0 Released - 2010">
+                    <i class="fas fa-code-branch"></i>
+                </div>
+                <div class="timeline-point" data-index="3" aria-label="Operation Trident Breach - 2010">
+                    <i class="fas fa-handcuffs"></i>
+                </div>
+                <div class="timeline-point" data-index="4" aria-label="GameOver Zeus - 2011-2014">
+                    <i class="fas fa-skull-crossbones"></i>
+                </div>
             </div>
             
             <!-- Timeline Event Cards -->
@@ -127,11 +122,6 @@ try {
 </section>
 
 <script src="script.js"></script>
-<script src="timeline_debug.js"></script>
-<script src="js/timeline-fix.js"></script>
-<script src="js/timeline_diagnostics.js"></script>
-<script src="js/timeline_progress_fix.js"></script>
-<script src="js/timeline_standardizer.js"></script>
-<script src="js/fa-icon-fix.js"></script>
+<script src="js/timeline.js"></script>
 
 <?php include 'footer.php'; ?>

@@ -91,3 +91,13 @@ html, body {
         right: 0 !important;
     }
 }
+
+/* FINAL OVERRIDE: Make header only as wide as content column */
+.d-flex > .flex-grow-1 > .header {
+    width: auto !important;
+    max-width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    left: unset !important;
+    right: unset !important;
+}

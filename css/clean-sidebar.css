@@ -1,0 +1,127 @@
+/* CLEAN SIDEBAR IMPLEMENTATION 
+ * This completely replaces all other sidebar CSS files
+ * --------------------------------------------------- */
+
+/* COMPLETELY REMOVE OVERLAY - NO BACKGROUNDS ANYWHERE */
+body::after {
+  display: none !important;
+  content: none !important;
+  background: none !important;
+  position: static !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  z-index: -9999 !important;
+  background-color: transparent !important;
+  background-image: none !important;
+}
+
+body.active::after {
+  display: none !important;
+  content: none !important;
+  background: none !important;
+  position: static !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  z-index: -9999 !important;
+  background-color: transparent !important;
+  background-image: none !important;
+}
+
+/* COMPLETELY NEW SIDEBAR */
+.side-bar {
+  position: fixed !important;
+  top: 0 !important;
+  left: -300px !important; /* Hidden by default on mobile */
+  width: 300px !important;
+  height: 100vh !important;
+  background-color: #234 !important;
+  color: white !important;
+  overflow-y: auto !important;
+  z-index: 9999 !important;
+  transition: left 0.3s ease !important;
+  box-shadow: none !important;
+}
+
+/* Active state - slide in from left */
+.side-bar.active {
+  left: 0 !important;
+}
+
+/* Profile section */
+.side-bar .profile {
+  padding: 20px !important;
+}
+
+.side-bar .profile img {
+  width: 80px !important;
+  height: 80px !important;
+  border-radius: 50% !important;
+  border: 2px solid white !important;
+}
+
+/* Navigation links */
+.side-bar .list-group-item {
+  background: transparent !important;
+  border: none !important;
+  color: white !important;
+  padding: 10px 20px !important;
+  transition: background 0.2s !important;
+  margin: 2px 0 !important;
+}
+
+.side-bar .list-group-item:hover {
+  background: rgba(255,255,255,0.1) !important;
+  color: white !important;
+}
+
+/* Close button */
+.side-bar .close-side-bar {
+  position: absolute !important;
+  top: 10px !important;
+  right: 10px !important;
+  background: transparent !important;
+  border: none !important;
+  color: white !important;
+  font-size: 20px !important;
+  cursor: pointer !important;
+  z-index: 10000 !important;
+}
+
+/* Desktop view */
+@media (min-width: 992px) {
+  .side-bar {
+    left: 0 !important; /* Always visible on desktop */
+  }
+  
+  .content-container,
+  main > .container {
+    margin-left: 300px !important;
+    width: calc(100% - 300px) !important;
+    transition: margin 0.3s ease !important;
+  }
+  
+  /* Ensure header doesn't overlap with sidebar */
+  .header, 
+  header.header {
+    margin-left: 300px !important;
+    width: calc(100% - 300px) !important;
+    transition: margin 0.3s ease !important;
+    position: relative !important;
+  }
+  
+  .side-bar .close-side-bar {
+    display: none !important; /* Hide close button on desktop */
+  }
+}
+
+/* COMPLETELY TRANSPARENT OVERLAY */
+.sidebar-overlay {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  background-color: transparent !important;
+  z-index: 9998 !important; /* Just below sidebar */
+  display: none !important;
+}

@@ -14,9 +14,7 @@ try {
     $events = getTimelineEvents('iloveyou');
     if (empty($events)) {
         echo '<div class="alert alert-warning" style="margin: 10px;">Timeline data not found. Using hardcoded fallback.</div>';
-    } else {
-        echo '<div class="alert alert-success" style="margin: 10px;">Timeline data loaded successfully: ' . count($events) . ' events found.</div>';
-    }
+    } 
 } catch (Exception $e) {
     echo '<div class="alert alert-danger" style="margin: 10px;">Database Error: ' . $e->getMessage() . '</div>';
 }

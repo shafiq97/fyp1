@@ -1,4 +1,4 @@
-    <!------side bar------>
+<!------side bar------>
 <?php
 // Start the session if not already started
 if (session_status() === PHP_SESSION_NONE) {
@@ -6,19 +6,19 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 ?>
 
-<div class="side-bar">
+<div class="side-bar d-flex flex-column active"> <!-- Added 'active' class by default -->
     <div class="p-3 sidebar-content">
         <div class="d-flex justify-content-end mb-3">
             <button type="button" id="close-side-bar" class="btn-close close-side-bar" aria-label="Close"></button>
         </div>
-        
+
         <div class="profile text-center mb-4">
-            <?php if(isset($_SESSION['user_id'])): ?>
-                <?php 
-                    $avatarPath = 'images/avatars/male.png'; // Default to male avatar
-                    if(isset($_SESSION['gender']) && $_SESSION['gender'] === 'female') {
-                        $avatarPath = 'images/avatars/female.png';
-                    }
+            <?php if (isset($_SESSION['user_id'])): ?>
+                <?php
+                $avatarPath = 'images/avatars/male.png'; // Default to male avatar
+                if (isset($_SESSION['gender']) && $_SESSION['gender'] === 'female') {
+                    $avatarPath = 'images/avatars/female.png';
+                }
                 ?>
                 <img src="<?php echo $avatarPath; ?>" alt="User Avatar" class="rounded-circle mb-3" width="80">
                 <h5 class="mb-1"><?php echo htmlspecialchars($_SESSION['username']); ?></h5>

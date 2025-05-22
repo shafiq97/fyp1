@@ -1,0 +1,197 @@
+/* MASTER SIDEBAR STYLES
+ * This is the only sidebar CSS file needed
+ * All overlay functionality has been removed
+ */
+
+/* Sidebar base */
+.side-bar {
+  position: fixed !important;
+  top: 0 !important;
+  left: -300px !important; /* Hidden by default on mobile */
+  width: 300px !important;
+  height: 100vh !important;
+  background-color: #234 !important;
+  color: white !important;
+  overflow-y: auto !important;
+  z-index: 9999 !important;
+  transition: left 0.3s ease !important;
+  box-shadow: none !important;
+}
+
+/* Active state - slide in from left */
+.side-bar.active {
+  left: 0 !important;
+  box-shadow: none !important; /* No shadow when active */
+}
+
+/* Profile section */
+.side-bar .profile {
+  padding: 20px !important;
+}
+
+.side-bar .profile img {
+  width: 80px !important;
+  height: 80px !important;
+  border-radius: 50% !important;
+  border: 2px solid white !important;
+}
+
+/* Navigation links */
+.side-bar .list-group-item {
+  background: transparent !important;
+  border: none !important;
+  color: white !important;
+  padding: 10px 20px !important;
+  transition: background 0.2s !important;
+  margin: 2px 0 !important;
+}
+
+.side-bar .list-group-item:hover {
+  background: rgba(255,255,255,0.1) !important;
+  color: white !important;
+}
+
+/* Close button */
+.side-bar .close-side-bar {
+  position: absolute !important;
+  top: 10px !important;
+  right: 10px !important;
+  background: transparent !important;
+  border: none !important;
+  color: white !important;
+  font-size: 20px !important;
+  cursor: pointer !important;
+  z-index: 10000 !important;
+}
+
+/* Desktop view */
+@media (min-width: 992px) {
+  /* Sidebar should be visible by default on desktop, 
+     but can be toggled with the active class */
+  .side-bar {
+    left: 0 !important; /* Visible by default */
+    transition: left 0.3s ease !important;
+  }
+  
+  /* When sidebar is not active, hide it */
+  .side-bar:not(.active) {
+    left: -300px !important; /* Hidden when not active */
+  }
+  
+  /* Initially set content positioning for when sidebar is visible */
+  .content-container,
+  main > .container {
+    margin-left: 300px !important;
+    width: calc(100% - 300px) !important;
+    transition: margin 0.3s ease, width 0.3s ease !important;
+  }
+  
+  /* When sidebar is not active, adjust content */
+  .side-bar:not(.active) ~ .flex-grow-1,
+  .side-bar:not(.active) ~ div .content-container,
+  .side-bar:not(.active) ~ div main > .container {
+    margin-left: 0 !important;
+    width: 100% !important;
+  }
+  
+  /* Fixed header positioning to avoid sidebar overlap */
+  header, 
+  .header {
+    position: fixed !important;
+    top: 0 !important;
+    right: 0 !important;
+    left: 300px !important; /* Match sidebar width exactly */
+    width: calc(100% - 300px) !important; /* Exactly full width minus sidebar */
+    z-index: 999 !important; /* Lower than sidebar */
+    max-width: calc(100% - 300px) !important; /* Ensure it doesn't exceed available space */
+    transition: left 0.3s ease, width 0.3s ease !important;
+  }
+  
+  /* When sidebar is not active, adjust header */
+  .side-bar:not(.active) ~ .flex-grow-1 .header,
+  .side-bar:not(.active) ~ div .header,
+  .side-bar:not(.active) ~ div header {
+    left: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+  
+  /* Add padding to main content to prevent header overlap */
+  main {
+    padding-top: 70px !important;
+    width: calc(100% - 300px) !important;
+    margin-left: 300px !important;
+    max-width: calc(100% - 300px) !important; /* Ensure content doesn't overflow */
+    transition: margin-left 0.3s ease, width 0.3s ease, max-width 0.3s ease !important;
+  }
+  
+  /* When sidebar is not active, adjust main content */
+  .side-bar:not(.active) ~ .flex-grow-1 main,
+  .side-bar:not(.active) ~ div main {
+    width: 100% !important;
+    margin-left: 0 !important;
+    max-width: 100% !important;
+  }
+  
+  /* For extra-wide screens */
+  @media (min-width: 1400px) {
+    /* Reinforced positioning for extra-wide screens */
+    header, 
+    .header {
+      left: 300px !important;
+      width: calc(100% - 300px) !important;
+      max-width: calc(100% - 300px) !important;
+    }
+    
+    /* When sidebar is not active, adjust header */
+    .side-bar:not(.active) ~ .flex-grow-1 .header,
+    .side-bar:not(.active) ~ div .header,
+    .side-bar:not(.active) ~ div header {
+      left: 0 !important;
+      width: 100% !important;
+      max-width: 100% !important;
+    }
+    
+    main {
+      width: calc(100% - 300px) !important;
+      margin-left: 300px !important;
+      max-width: calc(100% - 300px) !important;
+    }
+    
+    /* When sidebar is not active, adjust main content */
+    .side-bar:not(.active) ~ .flex-grow-1 main,
+    .side-bar:not(.active) ~ div main {
+      width: 100% !important;
+      margin-left: 0 !important;
+      max-width: 100% !important;
+    }
+  }
+  
+  /* Make #menu-btn visible on desktop */
+  #menu-btn {
+    display: block !important;
+  }
+  
+  .side-bar .close-side-bar {
+    display: block !important; /* Show close button on desktop */
+  }
+}
+
+/* Mobile view */
+@media (max-width: 991.98px) {
+  header,
+  .header {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    z-index: 999 !important;
+  }
+  
+  /* Add padding to main content */
+  main {
+    padding-top: 70px !important;
+    width: 100% !important;
+    margin-left: 0 !important;
+  }
+}

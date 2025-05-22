@@ -183,7 +183,7 @@ body:not(.dashboard-page) .content-container {
     body.dashboard-page.active .content-container,
     body.dashboard-page.active .profile-container {
         margin-left: 0; /* Don't push content */
-        opacity: 0.8; /* Slightly dim the content */
+        opacity: 1; /* Keep content fully visible - was 0.8 */
     }
     
     body {
@@ -197,17 +197,15 @@ body:not(.dashboard-page) .content-container {
         padding-right: 10px;
     }
     
-    /* Add overlay when sidebar is active */
+    /* Remove overlay when sidebar is active */
     body.dashboard-page.active::before {
-        content: '';
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: rgba(0, 0, 0, 0.4);
-        z-index: 1040;
-        animation: fadeIn 0.2s ease;
+        display: none !important;
+        content: none !important;
+        background: none !important;
+        position: static !important;
+        opacity: 0 !important;
+        visibility: hidden !important;
+        z-index: -9999 !important;
     }
     
     @keyframes fadeIn {

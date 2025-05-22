@@ -5,10 +5,34 @@
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
     position: fixed;
     top: 0;
-    left: 0;
-    right: 0;
     z-index: 1000;
     padding: 0;
+}
+
+/* Desktop view - adjust header position to not overlap sidebar */
+@media (min-width: 992px) {
+    .header {
+        left: 300px !important; /* Exactly match sidebar width */
+        width: calc(100% - 300px) !important; /* Exactly full width minus sidebar */
+    }
+    
+    /* Add padding to main content to account for fixed header */
+    main {
+        padding-top: 70px !important;
+    }
+}
+
+/* Mobile view - header takes full width */
+@media (max-width: 991.98px) {
+    .header {
+        left: 0 !important;
+        width: 100% !important;
+    }
+    
+    /* Add padding to main content */
+    main {
+        padding-top: 70px !important;
+    }
 }
 
 /* Container */

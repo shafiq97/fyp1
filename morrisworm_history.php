@@ -14,9 +14,7 @@ try {
     $events = getTimelineEvents('morrisworm');
     if (empty($events)) {
         echo '<div class="alert alert-warning" style="margin: 10px;">Timeline data not found. Using hardcoded fallback.</div>';
-    } else {
-        echo '<div class="alert alert-success" style="margin: 10px;">Timeline data loaded successfully: ' . count($events) . ' events found.</div>';
-    }
+    } 
 } catch (Exception $e) {
     echo '<div class="alert alert-danger" style="margin: 10px;">Database Error: ' . $e->getMessage() . '</div>';
 }
@@ -26,14 +24,12 @@ try {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Morris Worm Details</title>
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="css/history-page.css">
     <link rel="stylesheet" href="css/morrisworm_history.css">
     <link rel="stylesheet" href="css/history-layout-fix.css">
-    <link rel="stylesheet" href="css/morrisworm_enhanced.css">
-    <link rel="stylesheet" href="css/timeline-icon-fix.css">
-    <link rel="stylesheet" href="css/timeline_progress_fix.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <link rel="stylesheet" href="css/fa-icons-fix.css"><!-- Added Font Awesome icons fix -->
+    <link rel="stylesheet" href="css/timeline.css">
 </head>
 
 <section class="history-details content-container">
@@ -195,43 +191,35 @@ try {
     </div>
     
     <div class="timeline-section">
-        <h2 class="section-title"><i class="fas fa-clock"></i> Timeline of the Attack</h2>
+        <h2 class="section-title">Timeline of the Attack</h2>
         
         <div class="timeline-container">
-            <?php
-            // Include database connection and timeline functions
-            require_once 'includes/timeline_functions.php';
-            
-            // Get timeline events for Morris Worm
-            $events = getTimelineEvents('morrisworm');
-            ?>
-            <!-- Timeline Line with Points -->
+            <!-- Timeline Line with Points (hardcoded, like ILOVEYOU) -->
             <div class="timeline-line">
-                <?php
-                // Only use database events, if no events are found, timeline_standardizer.js will handle it
-                foreach ($events as $index => $event): 
-                ?>
-                <div class="timeline-point" data-index="<?php echo $index; ?>" aria-label="<?php echo htmlspecialchars($event['title']); ?>">
-                    <i class="fas <?php echo htmlspecialchars($event['icon_class']); ?>"></i>
+                <div class="timeline-point" data-index="0" aria-label="Worm Release - November 2, 1988">
+                    <i class="fas fa-bug"></i>
                 </div>
-                <?php 
-                endforeach;
-                ?>
+                <div class="timeline-point" data-index="1" aria-label="Initial Infection - Hours Later">
+                    <i class="fas fa-microchip"></i>
+                </div>
+                <div class="timeline-point" data-index="2" aria-label="Rapid Propagation - Same Day">
+                    <i class="fas fa-network-wired"></i>
+                </div>
+                <div class="timeline-point" data-index="3" aria-label="Network Disruption - November 3-4, 1988">
+                    <i class="fas fa-exclamation-triangle"></i>
+                </div>
+                <div class="timeline-point" data-index="4" aria-label="Containment & Analysis - Subsequent Days">
+                    <i class="fas fa-search"></i>
+                </div>
             </div>
-            
-            <!-- Timeline Event Cards -->
-            <?php
-            // Only use database events for timeline cards
-            foreach ($events as $index => $event): 
-            ?>
+            <!-- Timeline Event Cards (keep using PHP loop for content) -->
+            <?php foreach ($events as $index => $event): ?>
             <div class="timeline-event-card" data-index="<?php echo $index; ?>">
                 <h2><?php echo htmlspecialchars($event['year']); ?></h2>
                 <h3><?php echo htmlspecialchars($event['title']); ?></h3>
                 <p><?php echo htmlspecialchars($event['description']); ?></p>
             </div>
-            <?php
-            endforeach;
-            ?>
+            <?php endforeach; ?>
         </div>
     </div>
 
@@ -251,12 +239,6 @@ try {
 </section>
 
 <script src="script.js"></script>
-<script src="timeline_debug.js"></script>
-<script src="js/morrisworm_enhanced.js"></script>
-<script src="js/timeline-fix.js"></script>
-<script src="js/timeline_diagnostics.js"></script>
-<script src="js/timeline_progress_fix.js"></script>
-<script src="js/timeline_standardizer.js"></script>
-<script src="js/fa-icon-fix.js"></script>
+<script src="js/timeline.js"></script>
 
 <?php include 'footer.php'; ?>
